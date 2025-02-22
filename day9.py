@@ -1,3 +1,4 @@
+#Do not run this file ❌💀❌💀❌
 # make an ec2 instance
 
 import boto3
