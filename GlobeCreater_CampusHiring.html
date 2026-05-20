@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Globe Creater — Campus Hiring System | Pune</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+:root{
+  --ny:#1A3A6E;--nyd:#0F2548;--nyl:#2757A8;--nyxl:#EBF0FB;
+  --go:#B8922A;--gol:#F0CF7A;--gobg:#FDF8ED;
+  --bg:#EFF3FA;--sf:#fff;--sf2:#F5F7FC;
+  --tx:#111827;--tx2:#374151;--mu:#6B7280;--ft:#9CA3AF;
+  --br:#E2E8F4;--br2:#C8D3E8;
+  --gr:#16A34A;--grbg:#DCFCE7;--grb:#BBF7D0;
+  --rd:#DC2626;--rdbg:#FEE2E2;--rdb:#FECACA;
+  --am:#D97706;--ambg:#FEF3C7;--amb:#FDE68A;
+  --pu:#7C3AED;--pubg:#EDE9FE;
+  --r:8px;--rl:12px;--rxl:16px;
+  --sh:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  --sh2:0 4px 16px rgba(26,58,110,.1);
+  --sh3:0 12px 40px rgba(26,58,110,.2);
+}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--tx);font-size:14px;line-height:1.5}
+*{font-family:inherit}
+.hidden{display:none!important}
+input,select,textarea{font-size:13px;color:var(--tx);outline:none;border:1.5px solid var(--br);border-radius:var(--r);padding:9px 12px;background:#fff;transition:border-color .2s,box-shadow .2s;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--nyl);box-shadow:0 0 0 3px rgba(39,87,168,.1)}
+.btn{border:none;border-radius:var(--r);padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.bny{background:var(--ny);color:#fff}.bny:hover:not(:disabled){background:var(--nyd)}
+.bgr{background:var(--gr);color:#fff}.bgr:hover{background:#15803D}
+.brd{background:var(--rd);color:#fff}.brd:hover{background:#B91C1C}
+.bol{background:#fff;color:var(--ny);border:1.5px solid var(--br2)}.bol:hover{background:var(--nyxl)}
+.bgh{background:transparent;color:var(--mu);border:1.5px solid var(--br)}.bgh:hover{background:var(--sf2)}
+.bsm{padding:7px 14px;font-size:12px}
+.card{background:var(--sf);border-radius:var(--rl);border:1px solid var(--br);box-shadow:var(--sh)}
+.card2{background:var(--sf);border-radius:var(--rxl);border:1px solid var(--br);box-shadow:var(--sh2)}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.field label{font-size:11px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.5px}
+.req::after{content:' *';color:var(--rd)}
+.pill{display:inline-flex;align-items:center;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.pgr{background:var(--grbg);color:var(--gr)}.prd{background:var(--rdbg);color:var(--rd)}
+.pam{background:var(--ambg);color:var(--am)}.pny{background:var(--nyxl);color:var(--nyl)}
+.psel{background:var(--ny);color:#fff}.pgo{background:var(--gobg);color:var(--go)}
+.errmsg{background:var(--rdbg);border:1px solid var(--rdb);border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--rd);margin-bottom:14px}
+.infomsg{background:var(--nyxl);border:1px solid #C7D8F5;border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--nyl)}
+.warnmsg{background:var(--ambg);border:1px solid var(--amb);border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--am);line-height:1.8}
+.sucmsg{background:var(--grbg);border:1px solid var(--grb);border-radius:var(--r);padding:10px 14px;font-size:12px;color:var(--gr)}
+.slabel{font-size:10px;font-weight:700;color:var(--ft);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:600px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* ═══════════════════════════════════════
+   COMPREHENSIVE MOBILE RESPONSIVENESS
+   Breakpoints: 480px (phone), 768px (tablet)
+═══════════════════════════════════════ */
+@media(max-width:768px){
+  /* Landing */
+  .land-nav,.land-foot{padding:14px 16px}
+  .land-h1{font-size:32px}
+  .land-sub{font-size:13px}
+  .pcards{gap:14px}
+  /* Student portal */
+  .sbody{padding:16px 14px}
+  .ptitle{font-size:18px}
+  .itiles{grid-template-columns:repeat(4,1fr);gap:6px}
+  .itile{padding:10px 6px}.itile .iv{font-size:20px}
+  /* Test header */
+  .tprbdg{display:none}
+  .tcand .ci{display:none}
+  /* Palette — move to bottom on tablet */
+  .palette{width:200px}
+  /* Admin content padding */
+  .acont{padding:12px}
+  /* Metrics grid */
+  .mrow{grid-template-columns:repeat(3,1fr)}
+  /* Funnel */
+  .funnel{grid-template-columns:repeat(2,1fr)}
+  /* Score grid */
+  .sgrid{grid-template-columns:1fr 1fr}
+  /* Nav tabs — allow scroll */
+  .anav{-webkit-overflow-scrolling:touch}
+  .ntab{padding:10px 11px;font-size:11px}
+  /* Admin top bar */
+  .uname{display:none}
+  /* Social grid */
+  .soc-grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:480px){
+  /* Landing */
+  .land-h1{font-size:26px;letter-spacing:-.5px}
+  .land-sub{font-size:12px;margin-bottom:28px}
+  .pcards{grid-template-columns:1fr;gap:12px;max-width:100%}
+  .pcard{padding:20px 18px;border-radius:16px}
+  .land-chip{font-size:10px;padding:5px 14px}
+  /* Student steps — compact */
+  .steps{gap:4px}
+  .sl{display:none}
+  .sline{margin:0 4px}
+  /* Instructions tiles */
+  .itiles{grid-template-columns:repeat(2,1fr);gap:8px}
+  .schips{gap:6px}
+  .schip{font-size:11px;padding:5px 10px}
+  /* Test screen on phone */
+  .thdr{height:auto;padding:8px 12px;flex-wrap:wrap;gap:6px}
+  .tcand{order:1;flex:1 1 100%}
+  .tblk{order:2;min-width:80px;padding:5px 10px}
+  .tprv{order:3}
+  .tdig{font-size:18px;letter-spacing:2px}
+  /* Hide question palette on phone — show palette toggle button instead */
+  .palette{display:none}
+  .qscroll{padding:12px}
+  .qtxt{font-size:14px;padding:12px}
+  .ot{font-size:13px}
+  .qbar{padding:8px 10px;gap:6px}
+  .bprev,.bclr,.bmrn,.bsnx{padding:7px 10px;font-size:11px}
+  .bsub{padding:7px 14px;font-size:11px}
+  /* Confirm overlay */
+  .ovcard{padding:18px;border-radius:16px}
+  .cstats{grid-template-columns:repeat(2,1fr)}
+  /* Submitted / Thank You screen */
+  .subwrap{padding:0 4px}
+  .soc-grid{grid-template-columns:1fr}
+  .subthank{padding:18px 16px;border-radius:14px}
+  /* Admin login */
+  #alog{padding:20px 16px}
+  .alcard{padding:24px 20px;border-radius:16px}
+  /* Admin nav */
+  .atop{height:48px;padding:0 12px}
+  .atop .gcname{font-size:12px}
+  .rchip{font-size:10px;padding:3px 9px}
+  .backbtn{padding:5px 10px;font-size:11px}
+  /* Admin content */
+  .acont{padding:10px}
+  .mrow{grid-template-columns:repeat(2,1fr);gap:8px}
+  .mc{padding:11px}.mcv{font-size:22px}
+  .funnel{grid-template-columns:repeat(2,1fr);gap:8px}
+  .fnv{font-size:22px}.fn{padding:11px}
+  /* Tables — horizontal scroll on phone */
+  .tw,.tsx{-webkit-overflow-scrolling:touch}
+  /* Score form sliders */
+  .sgrid{grid-template-columns:1fr}
+  .shv{font-size:24px}
+  /* Cutoffs */
+  .crow{flex-direction:column;align-items:flex-start;gap:8px}
+  .crow label{width:100%}
+  .cdsc{width:100%}
+  /* Analytics */
+  .bclbl{width:90px;font-size:10px}
+  .san{width:110px;font-size:11px}
+  /* Offer letter */
+  .olsig{flex-direction:column;gap:16px}
+  .oltbl td{padding:6px 8px;font-size:11px}
+  /* Export cards */
+  .exc{padding:12px}
+  /* Section chips on instructions page */
+  .smopts{grid-template-columns:1fr}
+}
+#toast{position:fixed;bottom:20px;right:20px;background:var(--ny);color:#fff;padding:11px 18px;border-radius:var(--rl);font-size:13px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;box-shadow:var(--sh3)}
+#toast.show{opacity:1}
+
+/* BRAND */
+.gclogo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#1A3A6E,#2757A8);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0}
+.gcbrand{display:flex;align-items:center;gap:10px}
+.gcname{font-size:15px;font-weight:800;color:var(--ny);letter-spacing:-.3px}
+.gctag{font-size:10px;color:var(--mu);font-weight:500;margin-top:-1px}
+
+/* ═══ LANDING ═══ */
+#land{min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(155deg,#0F2548 0%,#1A3A6E 50%,#1E4B90 100%)}
+.land-nav{padding:20px 40px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.land-nav .gcname{color:#fff}.land-nav .gctag{color:rgba(255,255,255,.45)}
+.land-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center}
+.land-chip{background:rgba(184,146,42,.2);border:1px solid rgba(184,146,42,.4);color:var(--gol);font-size:11px;font-weight:700;letter-spacing:.8px;padding:6px 18px;border-radius:20px;display:inline-block;margin-bottom:22px}
+.land-h1{font-size:44px;font-weight:900;color:#fff;letter-spacing:-.8px;line-height:1.1;margin-bottom:14px}
+.land-h1 em{color:var(--gol);font-style:normal}
+.land-sub{font-size:15px;color:rgba(255,255,255,.55);max-width:500px;line-height:1.75;margin-bottom:44px}
+.pcards{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:700px;width:100%}
+.pcard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:30px 24px;cursor:pointer;transition:all .25s;text-align:left;backdrop-filter:blur(10px)}
+.pcard:hover{background:rgba(255,255,255,.1);transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.25);border-color:rgba(184,146,42,.5)}
+.pcicon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.pcs .pcicon{background:linear-gradient(135deg,#2757A8,#1A3A6E)}
+.pca .pcicon{background:linear-gradient(135deg,#B8922A,#8A6820)}
+.pcard h2{font-size:18px;font-weight:800;color:#fff;margin-bottom:8px}
+.pcard p{font-size:12px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:16px}
+.pctag{font-size:10px;font-weight:700;letter-spacing:.5px;padding:4px 14px;border-radius:20px}
+.pcs .pctag{background:rgba(39,87,168,.35);color:#A8C0FF}
+.pca .pctag{background:rgba(184,146,42,.3);color:var(--gol)}
+.land-foot{padding:20px 40px;border-top:1px solid rgba(255,255,255,.07);text-align:center}
+.land-foot p{font-size:11px;color:rgba(255,255,255,.3)}
+@media(max-width:600px){.pcards{grid-template-columns:1fr}.land-h1{font-size:28px}.land-nav,.land-foot{padding:14px 18px}}
+
+/* ═══ STUDENT ═══ */
+#stu{display:none;min-height:100vh;flex-direction:column;background:var(--bg)}
+.stop{background:var(--ny);height:56px;display:flex;align-items:center;padding:0 22px;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.15);flex-shrink:0}
+.stop .gcname{color:#fff;font-size:13px}.stop .gctag{color:rgba(255,255,255,.45);font-size:9px}
+.sbody{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:30px 20px;overflow-y:auto}
+.sbox{width:100%;max-width:620px}
+.backbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);border-radius:var(--r);padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer}
+.backbtn:hover{background:rgba(255,255,255,.2);color:#fff}
+/* Steps */
+.steps{display:flex;align-items:center;margin-bottom:26px}
+.sn{width:26px;height:26px;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sn-d{background:var(--gr);color:#fff}.sn-a{background:var(--ny);color:#fff}.sn-t{background:var(--br);color:var(--mu)}
+.sl{font-size:11px;font-weight:600}.sl-d{color:var(--gr)}.sl-a{color:var(--ny)}.sl-t{color:var(--ft)}
+.sline{flex:1;height:2px;margin:0 8px;border-radius:1px}
+.sline-d{background:var(--gr)}.sline-t{background:var(--br)}
+.step-item{display:flex;align-items:center;gap:7px}
+.ptitle{font-size:22px;font-weight:800;color:var(--ny);margin-bottom:6px}
+.psub{font-size:13px;color:var(--mu);margin-bottom:22px}
+/* Declaration */
+.dscroll{background:var(--sf2);border:1px solid var(--br);border-radius:var(--rl);padding:16px;max-height:240px;overflow-y:auto;font-size:12px;color:var(--tx2);line-height:1.85;margin-bottom:14px}
+.dscroll h4{font-size:13px;font-weight:700;color:var(--ny);margin-bottom:10px}
+.dscroll ul{padding-left:18px}.dscroll li{margin-bottom:5px}
+.chk{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1.5px solid var(--br);border-radius:var(--r);cursor:pointer;transition:all .2s;margin-bottom:10px}
+.chk:hover{border-color:var(--nyl);background:var(--nyxl)}
+.chk.on{border-color:var(--ny);background:var(--nyxl)}
+.chkbox{width:20px;height:20px;border-radius:5px;border:2px solid var(--br2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:transparent;transition:all .2s;margin-top:1px}
+.chk.on .chkbox{background:var(--ny);border-color:var(--ny);color:#fff}
+/* Instructions */
+.itiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.itile{background:var(--sf);border:1px solid var(--br);border-radius:var(--rl);padding:14px;text-align:center;box-shadow:var(--sh)}
+.itile .iv{font-size:26px;font-weight:800;color:var(--ny);line-height:1}
+.itile .il{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.schips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.schip{border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px}
+.smplq{background:var(--nyxl);border:1.5px solid var(--nyl);border-radius:var(--rl);padding:16px;margin-bottom:18px}
+.smplq .ql{font-size:10px;font-weight:700;color:var(--nyl);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.smplq .qt{font-size:14px;font-weight:600;color:var(--ny);margin-bottom:12px}
+.smopts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.smo{border:1.5px solid var(--br2);border-radius:var(--r);padding:7px 12px;font-size:12px;display:flex;align-items:center;gap:8px;background:#fff}
+.smo.ok{border-color:var(--gr);background:var(--grbg);color:var(--gr)}
+.smoc{width:20px;height:20px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.smo.ok .smoc{background:var(--gr);border-color:var(--gr);color:#fff}
+
+/* ═══ TEST ═══ */
+#test{display:none;height:100vh;flex-direction:column;overflow:hidden}
+.thdr{background:var(--ny);height:52px;display:flex;align-items:center;padding:0 16px;gap:14px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.tcand{flex:1}.tcand .cn{font-size:13px;font-weight:700;color:#fff}.tcand .ci{font-size:10px;color:rgba(255,255,255,.5)}
+.tprbdg{background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.4);color:#FCA5A5;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.4px;flex-shrink:0}
+.tblk{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:var(--r);padding:6px 14px;text-align:center;min-width:88px;flex-shrink:0}
+.tdig{font-size:21px;font-weight:800;color:#fff;letter-spacing:3px;font-variant-numeric:tabular-nums}
+.tlbl{font-size:9px;color:rgba(255,255,255,.5);text-transform:uppercase}
+.tw .tblk{border-color:rgba(255,209,0,.5);background:rgba(255,209,0,.1)}.tw .tdig{color:#FFD100}
+.tc .tblk{border-color:rgba(220,38,38,.5);background:rgba(220,38,38,.12)}.tc .tdig{color:#F87171;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.tprv{text-align:right;flex-shrink:0}.tprv .pv{font-size:18px;font-weight:800;color:#fff}.tprv .pl{font-size:9px;color:rgba(255,255,255,.5)}
+/* Section tabs */
+.stabs{background:var(--sf);border-bottom:2px solid var(--br);display:flex;overflow-x:auto;flex-shrink:0;padding:0 12px}
+.stab{padding:10px 14px;font-size:12px;font-weight:600;color:var(--mu);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:5px;transition:all .14s;margin-bottom:-2px}
+.stab:hover{color:var(--ny);background:var(--sf2)}
+.stab.act{color:var(--ny);border-bottom-color:var(--ny)}
+.stab .sc{background:var(--br);color:var(--mu);border-radius:10px;padding:1px 6px;font-size:9px;font-weight:700}
+.stab.act .sc{background:var(--nyxl);color:var(--nyl)}.stab.sd .sc{background:var(--grbg);color:var(--gr)}
+/* Test body */
+.tbody{display:flex;flex:1;overflow:hidden;min-height:0}
+.qarea{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.qscroll{flex:1;overflow-y:auto;padding:18px 20px}
+.qhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.qhl{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.qnbdg{background:var(--ny);color:#fff;font-size:11px;font-weight:700;padding:4px 13px;border-radius:20px}
+.qsbdg{font-size:11px;font-weight:600;padding:4px 11px;border-radius:20px}
+.qdb{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px}
+.dE{background:#DCFCE7;color:#16A34A}.dH{background:#FEE2E2;color:#DC2626}
+.qmks{font-size:11px;color:var(--mu);background:var(--sf2);border:1px solid var(--br);border-radius:20px;padding:4px 12px}
+.qtxt{font-size:15px;font-weight:500;line-height:1.7;background:var(--sf2);border:1px solid var(--br);border-radius:var(--rl);padding:16px 18px;margin-bottom:16px;white-space:pre-wrap}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{display:flex;align-items:flex-start;gap:13px;border:2px solid var(--br);border-radius:var(--rl);padding:12px 15px;cursor:pointer;transition:all .16s;background:#fff;user-select:none}
+.opt:hover{border-color:var(--nyl);background:var(--nyxl);transform:translateX(2px)}
+.opt.sel{border-color:var(--ny);background:var(--nyxl)}
+.opt.sel .oc{background:var(--ny);border-color:var(--ny);color:#fff}
+.oc{width:26px;min-width:26px;height:26px;border-radius:50%;border:2px solid var(--br2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--mu);transition:all .16s;margin-top:1px}
+.ot{font-size:14px;line-height:1.5}
+/* Action bar */
+.qbar{padding:12px 16px;background:var(--sf);border-top:1px solid var(--br);display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap}
+.bprev{background:#fff;color:var(--ny);border:1.5px solid var(--nyl);border-radius:var(--r);padding:8px 15px;font-size:12px;font-weight:600;cursor:pointer}
+.bprev:hover{background:var(--nyxl)}.bprev:disabled{opacity:.3;cursor:not-allowed}
+.bclr{background:var(--sf2);color:var(--mu);border:1.5px solid var(--br);border-radius:var(--r);padding:8px 13px;font-size:12px;font-weight:600;cursor:pointer}
+.bclr:hover{background:var(--br)}
+.bmrn{background:var(--ambg);color:var(--am);border:1.5px solid var(--amb);border-radius:var(--r);padding:8px 13px;font-size:12px;font-weight:600;cursor:pointer}
+.bmrn:hover{background:var(--amb)}.bmrn.on{background:var(--am);color:#fff}
+.bsnx{background:var(--ny);color:#fff;border:none;border-radius:var(--r);padding:8px 17px;font-size:12px;font-weight:600;cursor:pointer}
+.bsnx:hover{background:var(--nyd)}
+.bsub{background:var(--gr);color:#fff;border:none;border-radius:var(--r);padding:8px 20px;font-size:12px;font-weight:700;cursor:pointer;margin-left:auto}
+.bsub:hover{background:#15803D}
+/* Palette */
+.palette{width:230px;flex-shrink:0;border-left:1px solid var(--br);display:flex;flex-direction:column;overflow:hidden;background:var(--sf)}
+.palhdr{padding:11px 13px;border-bottom:1px solid var(--br);font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
+.palscroll{flex:1;overflow-y:auto;padding:12px}
+.plleg{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.pli{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--mu)}
+.pld{width:16px;height:16px;border-radius:4px;flex-shrink:0}
+.psec{margin-bottom:12px}
+.psecn{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;padding-bottom:4px;border-bottom:1px solid var(--br)}
+.palgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.qb{aspect-ratio:1;border-radius:5px;border:1.5px solid var(--br);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;cursor:pointer;color:var(--mu);transition:all .13s}
+.qb:hover{border-color:var(--nyl);background:var(--nyxl)}
+.qb.qc{background:var(--ny);border-color:var(--ny);color:#fff}
+.qb.qa{background:var(--grbg);border-color:var(--gr);color:var(--gr)}
+.qb.qm{background:var(--ambg);border-color:var(--amb);color:var(--am)}
+.qb.qa.qm{background:var(--pubg);border-color:var(--pu);color:var(--pu)}
+.palft{background:var(--sf2);border-top:1px solid var(--br);padding:11px 13px;flex-shrink:0}
+.pfr{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.pfl{font-size:11px;color:var(--mu)}.pfv{font-size:13px;font-weight:700}
+.prbar{height:4px;background:var(--br);border-radius:2px;overflow:hidden;margin-bottom:3px}
+.prfill{height:100%;background:var(--ny);border-radius:2px;transition:width .3s}
+.prtxt{font-size:10px;color:var(--mu)}
+/* Overlay */
+.overlay{position:fixed;inset:0;background:rgba(15,37,72,.6);display:flex;align-items:center;justify-content:center;z-index:800;backdrop-filter:blur(4px)}
+.ovcard{background:#fff;border-radius:20px;padding:26px;width:500px;max-width:94vw;box-shadow:var(--sh3)}
+.ovcard h2{font-size:19px;font-weight:800;color:var(--ny);margin-bottom:5px}
+.ovsub{font-size:13px;color:var(--mu);margin-bottom:16px}
+.sstbl{border:1px solid var(--br);border-radius:var(--rl);overflow:hidden;margin-bottom:16px}
+.ssth{background:var(--ny);display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:8px 13px;gap:8px}
+.ssth span{font-size:10px;font-weight:600;color:rgba(255,255,255,.65);text-transform:uppercase}
+.sstr{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:8px 13px;gap:8px;border-top:1px solid var(--br);align-items:center}
+.sstr:nth-child(even){background:var(--sf2)}.sstr span{font-size:12px}
+.cstats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.cst{background:var(--sf2);border:1px solid var(--br);border-radius:var(--rl);padding:11px;text-align:center}
+.cstv{font-size:22px;font-weight:800;color:var(--ny)}.cstl{font-size:10px;color:var(--mu);text-transform:uppercase;margin-top:2px}
+/* Proctoring warn */
+.procov{position:fixed;inset:0;background:rgba(120,15,15,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9000;text-align:center;padding:32px}
+.procov h2{color:#fff;font-size:26px;font-weight:900;margin-bottom:12px}
+.procov p{color:rgba(255,255,255,.75);font-size:15px;max-width:480px;line-height:1.7;margin-bottom:24px}
+.procnum{font-size:56px;font-weight:900;color:#F87171;margin-bottom:8px}
+
+/* ═══ SUBMITTED ═══ */
+#submitted{display:none;min-height:100vh;background:linear-gradient(160deg,#0F2548 0%,#1A3A6E 55%,#1B4A9E 100%);flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;position:relative;overflow:hidden}
+#submitted::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(184,146,42,.08) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(39,87,168,.15) 0%,transparent 55%);pointer-events:none}
+.subwrap{position:relative;z-index:1;max-width:600px;width:100%}
+.subicon{width:88px;height:88px;border-radius:50%;background:rgba(22,163,74,.15);border:2.5px solid rgba(22,163,74,.4);font-size:34px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:subpop .6s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes subpop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+#submitted h1{font-size:30px;font-weight:900;color:#fff;margin-bottom:10px;letter-spacing:-.5px}
+#submitted .submain{font-size:14px;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto 6px;line-height:1.75}
+.subidbox{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--rl);padding:14px 28px;margin:20px auto;display:inline-block;backdrop-filter:blur(8px)}
+.subidbox .idlbl{font-size:10px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.subidbox .idval{font-size:22px;font-weight:800;color:#fff;letter-spacing:1px}
+.subnote{font-size:11px;color:rgba(255,255,255,.28);margin-top:12px;max-width:400px;margin-left:auto;margin-right:auto}
+/* Thank You / Social Panel */
+.subthank{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:26px 28px;margin:24px auto 0;max-width:520px;backdrop-filter:blur(10px)}
+.subthank-title{font-size:17px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:-.2px}
+.subthank-msg{font-size:13px;color:rgba(255,255,255,.55);line-height:1.75;margin-bottom:20px}
+.subthank-msg strong{color:rgba(255,255,255,.8)}
+.soc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.soc-btn{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;text-decoration:none;transition:all .2s;border:1px solid rgba(255,255,255,.1)}
+.soc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.soc-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.soc-text{text-align:left}.soc-name{font-size:12px;font-weight:700;color:#fff;display:block}.soc-handle{font-size:10px;color:rgba(255,255,255,.45);display:block}
+.soc-web{background:rgba(26,58,110,.5);border-color:rgba(39,87,168,.4)}.soc-web:hover{background:rgba(39,87,168,.6)}
+.soc-web .soc-icon{background:#2757A8}
+.soc-li{background:rgba(0,119,181,.15);border-color:rgba(0,119,181,.35)}.soc-li:hover{background:rgba(0,119,181,.3)}
+.soc-li .soc-icon{background:#0077B5}
+.soc-ig{background:rgba(225,48,108,.1);border-color:rgba(225,48,108,.3)}.soc-ig:hover{background:rgba(225,48,108,.25)}
+.soc-ig .soc-icon{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.soc-fb{background:rgba(24,119,242,.1);border-color:rgba(24,119,242,.3)}.soc-fb:hover{background:rgba(24,119,242,.25)}
+.soc-fb .soc-icon{background:#1877F2}
+
+/* ═══ ADMIN ═══ */
+#adm{display:none;min-height:100vh;flex-direction:column}
+/* Admin login */
+#alog{display:flex;min-height:100vh;align-items:center;justify-content:center;padding:32px;background:linear-gradient(155deg,#0F2548,#1A3A6E)}
+.alcard{background:#fff;border-radius:20px;padding:34px;width:100%;max-width:390px;box-shadow:var(--sh3)}
+.allogo{width:58px;height:58px;border-radius:15px;background:linear-gradient(135deg,#1A3A6E,#2757A8);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;margin:0 auto 14px}
+.altitle{font-size:20px;font-weight:800;color:var(--ny);text-align:center;margin-bottom:3px}
+.alsub{font-size:12px;color:var(--mu);text-align:center;margin-bottom:22px}
+/* Admin shell */
+.atop{background:var(--ny);height:56px;display:flex;align-items:center;padding:0 18px;box-shadow:0 2px 8px rgba(0,0,0,.15);flex-shrink:0}
+.atop .gcname{color:#fff;font-size:14px}.atop .gctag{color:rgba(255,255,255,.45)}
+.atopr{display:flex;align-items:center;gap:12px;margin-left:auto}
+.rchip{font-size:11px;padding:4px 13px;border-radius:20px;font-weight:700;letter-spacing:.3px}
+.radm{background:rgba(255,255,255,.12);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.2)}
+.rsup{background:rgba(184,146,42,.25);color:var(--gol);border:1px solid rgba(184,146,42,.4)}
+.uname{color:rgba(255,255,255,.65);font-size:12px}
+/* Nav */
+.anav{background:var(--sf);border-bottom:2px solid var(--br);display:flex;overflow-x:auto;flex-shrink:0;padding:0 8px}
+.ntab{padding:11px 15px;font-size:12px;font-weight:600;color:var(--mu);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;display:flex;align-items:center;gap:5px;transition:all .14s}
+.ntab:hover{color:var(--ny);background:var(--sf2)}.ntab.act{color:var(--ny);border-bottom-color:var(--ny)}
+.tbdg{background:var(--ny);color:#fff;font-size:9px;padding:2px 6px;border-radius:10px;font-weight:700}
+.acont{flex:1;padding:18px;overflow-y:auto}
+/* Metrics */
+.mrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:18px}
+.mc{background:var(--sf);border:1px solid var(--br);border-radius:var(--rl);padding:15px;text-align:center;box-shadow:var(--sh);transition:transform .18s}
+.mc:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+.mcv{font-size:28px;font-weight:900;color:var(--ny);line-height:1}
+.mcl{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.mc-gr .mcv{color:var(--gr)}.mc-rd .mcv{color:var(--rd)}.mc-am .mcv{color:var(--am)}
+/* Table */
+.tw{background:var(--sf);border:1px solid var(--br);border-radius:var(--rl);overflow:hidden;margin-bottom:14px;box-shadow:var(--sh)}
+.tsx{overflow-x:auto}
+.th,.tr{display:grid;padding:9px 14px;gap:8px;align-items:center}
+.th{background:var(--ny)}
+.th span{font-size:10px;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr{border-top:1px solid var(--br);transition:background .13s}
+.tr:nth-child(even){background:var(--sf2)}.tr:hover{background:var(--nyxl);cursor:pointer}
+.tr span{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Score form */
+.sfc{background:var(--sf);border:1px solid var(--br);border-radius:var(--rl);padding:18px;margin-bottom:14px;box-shadow:var(--sh)}
+.sfct{font-size:11px;font-weight:700;color:var(--ny);text-transform:uppercase;letter-spacing:.5px;margin-bottom:13px}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.si{background:var(--sf2);border:1px solid var(--br);border-radius:var(--rl);padding:11px}
+.si label{font-size:10px;font-weight:600;color:var(--mu);display:block;margin-bottom:5px}
+.snum{font-size:20px;font-weight:800;color:var(--ny);text-align:center;margin-bottom:5px}
+.si input[type=range]{width:100%;accent-color:var(--ny);cursor:pointer}
+.shero{background:linear-gradient(135deg,var(--ny),var(--nyl));border-radius:var(--rl);padding:14px;text-align:center;margin-bottom:14px}
+.shv{font-size:30px;font-weight:900;color:#fff}
+.shs{font-size:12px;color:rgba(255,255,255,.6);margin-top:3px}
+/* Cutoffs */
+.cc{background:var(--sf);border:1px solid var(--br);border-radius:var(--rl);padding:18px;margin-bottom:14px;box-shadow:var(--sh)}
+.cct{font-size:11px;font-weight:700;color:var(--ny);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+.crow{display:flex;align-items:center;gap:12px;padding:11px;background:var(--sf2);border-radius:var(--r);border:1px solid var(--br);margin-bottom:10px;flex-wrap:wrap}
+.crow label{font-size:13px;font-weight:600;color:var(--tx);width:210px;flex-shrink:0}
+.crow input[type=range]{flex:1;min-width:100px;accent-color:var(--ny)}
+.cval{font-size:15px;font-weight:800;color:var(--ny);min-width:46px;text-align:right}
+.cdsc{font-size:10px;color:var(--mu);flex-shrink:0;width:120px}
+/* Analytics */
+.anc{background:var(--sf);border:1px solid var(--br);border-radius:var(--rl);padding:18px;margin-bottom:13px;box-shadow:var(--sh)}
+.anct{font-size:11px;font-weight:700;color:var(--ny);text-transform:uppercase;letter-spacing:.5px;margin-bottom:13px}
+.bcrow{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.bclbl{font-size:11px;width:130px;flex-shrink:0;font-weight:500}
+.bcwrap{flex:1;height:22px;background:var(--sf2);border-radius:5px;overflow:hidden;border:1px solid var(--br)}
+.bcfill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;transition:width 1s ease}
+.bcval{font-size:10px;font-weight:700;color:#fff}
+.bcnum{font-size:11px;font-weight:700;color:var(--ny);width:36px;text-align:right}
+.funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.fn{border-radius:var(--rl);padding:15px;text-align:center}
+.fnv{font-size:30px;font-weight:900;color:#fff;line-height:1}
+.fnl{font-size:10px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.4px;margin-top:5px;font-weight:600}
+.fnp{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
+/* Section bars */
+.sarow{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.san{font-size:12px;width:155px;flex-shrink:0;font-weight:500}
+.sabw{flex:1;height:10px;background:var(--br);border-radius:5px;overflow:hidden}
+.sabf{height:100%;border-radius:5px;transition:width 1.2s ease}
+.sav{font-size:12px;font-weight:700;color:var(--ny);width:40px;text-align:right}
+/* Answer review */
+.arg{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-bottom:10px}
+.arc{border-radius:6px;padding:5px 3px;text-align:center;font-size:10px;font-weight:600}
+.arok{background:var(--grbg);color:var(--gr);border:1px solid var(--grb)}
+.arbad{background:var(--rdbg);color:var(--rd);border:1px solid var(--rdb)}
+.arbl{background:var(--sf2);color:var(--ft);border:1px solid var(--br)}
+/* Offer letter */
+.olet{background:#fff;border:2px solid var(--ny);border-radius:var(--rl);padding:30px;margin-bottom:14px;font-size:13px;line-height:1.9}
+/* Mobile palette overlay */
+#mpaloverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:700;backdrop-filter:blur(4px)}
+#mpaloverlay.open{display:flex;align-items:flex-end}
+#mpalpanel{background:#fff;border-radius:20px 20px 0 0;padding:16px;width:100%;max-height:70vh;overflow-y:auto}
+#mpalpanel .palhdr{padding:0 0 10px;font-size:12px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+#mpalbtn-close{background:var(--ny);color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer}
+.olhdr{text-align:center;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--ny)}
+.olhdr h2{font-size:22px;font-weight:900;color:var(--ny)}
+.olhdr p{font-size:12px;color:var(--mu);margin-top:3px}
+.oltbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:12px}
+.oltbl td{padding:8px 12px;border:1px solid var(--br)}
+.oltbl tr:nth-child(even) td{background:var(--sf2)}
+.oltbl td:first-child{font-weight:600;color:var(--ny);background:var(--nyxl);width:40%}
+.olsig{margin-top:24px;padding-top:13px;border-top:1px solid var(--br);display:flex;justify-content:space-between;align-items:flex-end}
+.olline{border-bottom:1.5px solid var(--tx);width:170px;margin-bottom:4px}
+/* Export */
+.exc{background:var(--sf);border:1px solid var(--br);border-radius:var(--rl);padding:15px;margin-bottom:12px;box-shadow:var(--sh)}
+.exc h3{font-size:13px;font-weight:700;color:var(--ny);margin-bottom:4px}
+.exc p{font-size:12px;color:var(--mu);margin-bottom:11px;line-height:1.6}
+/* Empty */
+.empty{background:var(--sf);border:1px solid var(--br);border-radius:var(--rl);padding:40px;text-align:center;color:var(--mu);box-shadow:var(--sh)}
+.empty .ei{font-size:36px;margin-bottom:10px}
+.empty h4{font-size:14px;font-weight:700;color:var(--tx2);margin-bottom:5px}
+.empty p{font-size:12px;line-height:1.6}
+@media print{
+  #land,#stu,#test,#submitted,.atop,.anav,.acont>*:not(.olet){display:none!important}
+  .olet{border:2px solid #1A3A6E;margin:0}body{background:#fff}
+}
+</style>
+</head>
+<body>
+<div id="toast"></div>
+
+<!-- ══════════ LANDING ══════════ -->
+<div id="land">
+  <nav class="land-nav">
+    <div class="gcbrand">
+      <div class="gclogo">GC</div>
+      <div><div class="gcname" style="color:#fff;font-size:14px">Globe Creater</div><div class="gctag" style="color:rgba(255,255,255,.45)">Campus Hiring System · Pune</div></div>
+    </div>
+    <div style="color:rgba(255,255,255,.4);font-size:11px">Internship Drive 2026</div>
+  </nav>
+  <div class="land-hero">
+    <div class="land-chip">🏆 CAMPUS INTERNSHIP DRIVE 2026 — GLOBE CREATER</div>
+    <h1 class="land-h1">Structured.<br><em>Fair. Proctored.</em></h1>
+    <p class="land-sub">Globe Creater's enterprise-grade 3-stage campus hiring platform — Aptitude Test → Group Discussion → Face-to-Face Interview. All results managed exclusively by Admin.</p>
+    <div class="pcards">
+      <div class="pcard pcs" onclick="go('stu')">
+        <div class="pcicon">📝</div>
+        <h2>Student Portal</h2>
+        <p>Appear for the proctored aptitude test. No results are shown — all scores and outcomes are managed exclusively by the Globe Creater admin team.</p>
+        <span class="pctag">FOR CANDIDATES ONLY</span>
+      </div>
+      <div class="pcard pca" onclick="go('adm')">
+        <div class="pcicon">🔐</div>
+        <h2>Admin Portal</h2>
+        <p>View aptitude scores, conduct GD & F2F evaluations, manage the full pipeline, set cutoffs, and export complete data to Excel.</p>
+        <span class="pctag">ADMIN &amp; SUPER ADMIN</span>
+      </div>
+    </div>
+  </div>
+  <div class="land-foot"><p>© 2026 Globe Creater · Pune, Maharashtra · All data stored locally in your browser · No internet required</p></div>
+</div>
+
+<!-- ══════════ STUDENT PORTAL ══════════ -->
+<div id="stu" style="display:none;flex-direction:column">
+  <div class="stop">
+    <div class="gcbrand"><div class="gclogo" style="width:30px;height:30px;font-size:10px">GC</div><div><div class="gcname" style="color:#fff;font-size:12px">Globe Creater</div><div class="gctag" style="color:rgba(255,255,255,.4);font-size:9px">Student Portal · Pune</div></div></div>
+    <button class="backbtn" onclick="go('land')">← Home</button>
+  </div>
+  <div class="sbody">
+    <div class="sbox">
+      <div class="steps" id="steps">
+        <div class="step-item"><div class="sn sn-a" id="sn1">1</div><div class="sl sl-a" id="sl1">Register</div></div>
+        <div class="sline sline-t" id="line1"></div>
+        <div class="step-item"><div class="sn sn-t" id="sn2">2</div><div class="sl sl-t" id="sl2">Declaration</div></div>
+        <div class="sline sline-t" id="line2"></div>
+        <div class="step-item"><div class="sn sn-t" id="sn3">3</div><div class="sl sl-t" id="sl3">Instructions</div></div>
+        <div class="sline sline-t" id="line3"></div>
+        <div class="step-item"><div class="sn sn-t" id="sn4">▶</div><div class="sl sl-t" id="sl4">Test</div></div>
+      </div>
+
+      <!-- STEP 1: REGISTER -->
+      <div id="sv1">
+        <div class="ptitle">Candidate Registration</div>
+        <p class="psub">Enter your details exactly as registered with Globe Creater. Fields marked * are required.</p>
+        <div class="card2" style="padding:20px">
+          <div id="serr" class="errmsg hidden"></div>
+          <div class="g2">
+            <div class="field"><label class="req">Candidate ID</label><input id="scid" placeholder="e.g. GC-2026-001" autocomplete="off"></div>
+            <div class="field"><label class="req">Full Name</label><input id="snm" placeholder="Your full name"></div>
+          </div>
+          <div class="g2">
+            <div class="field"><label class="req">Email ID</label><input id="sem" type="email" placeholder="email@college.edu"></div>
+            <div class="field"><label class="req">Mobile Number</label><input id="smob" placeholder="10-digit mobile" maxlength="10"></div>
+          </div>
+          <div class="g2">
+            <div class="field"><label class="req">College / Institute</label><input id="scol" placeholder="Full college name"></div>
+            <div class="field"><label class="req">Drive Date</label><input id="sdt" type="date"></div>
+          </div>
+          <div class="g2">
+            <div class="field"><label>Course &amp; Branch</label><input id="scr" placeholder="e.g. BE Computer Engineering"></div>
+            <div class="field"><label>Year / CGPA</label><input id="scg" placeholder="e.g. Third Year / 7.8"></div>
+          </div>
+          <button class="btn bny" style="width:100%;padding:12px;font-size:14px;margin-top:4px" onclick="sReg()">Continue to Declaration →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: DECLARATION -->
+      <div id="sv2" class="hidden">
+        <div class="ptitle">Candidate Declaration</div>
+        <p class="psub">Read carefully and accept both declarations before proceeding.</p>
+        <div class="card2" style="padding:20px">
+          <div class="dscroll">
+            <h4>📋 Globe Creater — Terms of Assessment (2026)</h4>
+            <ul>
+              <li>I confirm all details provided are accurate and complete. False information leads to immediate disqualification.</li>
+              <li>This is a <strong>proctored, timed online assessment</strong>. Any tab switching, use of external resources, or communication during the test is strictly prohibited.</li>
+              <li>Switching browser tabs during the test triggers a <strong>proctoring violation</strong>. Three violations result in automatic test termination and admin notification.</li>
+              <li>Right-clicking, copy-paste, and developer tools are disabled during the test.</li>
+              <li>The test has <strong>30 questions across 5 sections</strong> to be completed in <strong>30 minutes</strong>. The timer cannot be paused.</li>
+              <li>The test auto-submits when the timer expires. Answers cannot be changed after submission.</li>
+              <li><strong>No scores or results will be displayed to candidates.</strong> All scores and selection outcomes are reviewed exclusively by the Globe Creater admin team.</li>
+              <li>I consent to Globe Creater storing and using my test data for this recruitment process.</li>
+              <li>All selection decisions by Globe Creater are final and binding.</li>
+            </ul>
+          </div>
+          <div class="chk" id="c1" onclick="toggleC('c1',1)"><div class="chkbox">✓</div><span style="font-size:13px;color:var(--tx2)">I have read and accept all the rules and terms of this proctored assessment.</span></div>
+          <div class="chk" id="c2" onclick="toggleC('c2',2)"><div class="chkbox">✓</div><span style="font-size:13px;color:var(--tx2)">I confirm I am the registered candidate and understand results are for admin review only.</span></div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button class="btn bol" onclick="step(1)">← Back</button>
+            <button class="btn bny" style="flex:1;padding:12px" onclick="goInstr()">Proceed to Instructions →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: INSTRUCTIONS -->
+      <div id="sv3" class="hidden">
+        <div class="ptitle">Test Instructions</div>
+        <p class="psub">Timer starts the moment you click "Start Test". Read carefully.</p>
+        <div class="card2" style="padding:20px">
+          <div class="itiles">
+            <div class="itile"><div class="iv">30</div><div class="il">Minutes</div></div>
+            <div class="itile"><div class="iv">30</div><div class="il">Questions</div></div>
+            <div class="itile"><div class="iv">5</div><div class="il">Sections</div></div>
+            <div class="itile"><div class="iv">+1</div><div class="il">Per Correct</div></div>
+          </div>
+          <div class="slabel">Sections (6 questions each — 3 Easy + 3 Hard)</div>
+          <div class="schips" style="margin-bottom:18px">
+            <span class="schip" style="background:#E8F1FF;color:#185FA5"><span style="width:8px;height:8px;border-radius:50%;background:#185FA5;display:inline-block"></span>English Language</span>
+            <span class="schip" style="background:#EAF3DE;color:#3B6D11"><span style="width:8px;height:8px;border-radius:50%;background:#3B6D11;display:inline-block"></span>Mathematics</span>
+            <span class="schip" style="background:#FAEEDA;color:#854F0B"><span style="width:8px;height:8px;border-radius:50%;background:#854F0B;display:inline-block"></span>Quantitative Aptitude</span>
+            <span class="schip" style="background:#EEEDFE;color:#533AB7"><span style="width:8px;height:8px;border-radius:50%;background:#533AB7;display:inline-block"></span>Logical Reasoning</span>
+            <span class="schip" style="background:#E1F5EE;color:#0F6E56"><span style="width:8px;height:8px;border-radius:50%;background:#0F6E56;display:inline-block"></span>Abstract Reasoning</span>
+          </div>
+          <div class="slabel">Sample Question</div>
+          <div class="smplq">
+            <div class="ql">📖 English — Easy | Q1 of 30</div>
+            <div class="qt">Choose the correct synonym of: <strong>'Benevolent'</strong></div>
+            <div class="smopts">
+              <div class="smo ok"><div class="smoc">A</div>Kind ← Correct Answer</div>
+              <div class="smo"><div class="smoc">B</div>Cruel</div>
+              <div class="smo"><div class="smoc">C</div>Angry</div>
+              <div class="smo"><div class="smoc">D</div>Lazy</div>
+            </div>
+          </div>
+          <div class="warnmsg" style="margin-bottom:16px">
+            <strong>⚠ Important Rules:</strong><br>
+            • <strong>Proctoring is active.</strong> Tab switching = violation. 3 violations = auto-termination + admin flag.<br>
+            • Use <strong>Save &amp; Next</strong> to answer and move forward. Use <strong>Mark for Review &amp; Next</strong> to flag for later.<br>
+            • Use <strong>Clear Response</strong> to deselect your current answer.<br>
+            • Timer auto-submits at 00:00. Do not wait until the last second.<br>
+            • <strong>No results are shown to candidates.</strong> Results are reviewed by Globe Creater admin only.
+          </div>
+          <button class="btn bny" style="width:100%;padding:14px;font-size:15px;font-weight:700" onclick="startTest()">▶ &nbsp;Start Test Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TEST SCREEN ══════════ -->
+<div id="test" style="display:none;height:100vh;flex-direction:column;overflow:hidden">
+  <div class="thdr" id="thdr">
+    <div class="gcbrand" style="flex-shrink:0">
+      <div class="gclogo" style="width:28px;height:28px;font-size:10px">GC</div>
+      <div><div style="color:#fff;font-size:11px;font-weight:700">Globe Creater</div><div style="color:rgba(255,255,255,.45);font-size:9px">Aptitude Test · Pune</div></div>
+    </div>
+    <div class="tcand" style="margin-left:14px">
+      <div class="cn" id="tcn">—</div>
+      <div class="ci" id="tci">—</div>
+    </div>
+    <div class="tprbdg">🔴 PROCTORED</div>
+    <div class="tblk" id="tblk"><div class="tdig" id="tdig">30:00</div><div class="tlbl">Remaining</div></div>
+    <div class="tprv" style="margin-left:12px;flex-shrink:0"><div class="pv" id="tprv">0/30</div><div class="pl">Answered</div></div>
+  </div>
+  <div class="stabs" id="stabs"></div>
+  <div class="tbody">
+    <div class="qarea">
+      <div class="qscroll">
+        <div class="qhdr"><div class="qhl" id="qmeta"></div><div class="qmks">+1 Mark | No Negative Marking</div></div>
+        <div class="qtxt" id="qtxt"></div>
+        <div class="opts" id="qopts"></div>
+      </div>
+      <div class="qbar">
+        <button class="bprev" id="bprev" onclick="navQ(-1)" disabled>← Previous</button>
+        <button class="bclr" onclick="clrAns()">✕ Clear</button>
+        <button class="bmrn" id="bmrn" onclick="doMark()">⚑ Mark &amp; Next</button>
+        <button class="bsnx" onclick="doSaveNext()">Save &amp; Next →</button>
+        <button class="bsub" onclick="showConf()">Submit ▸</button>
+        <button class="bsnx" id="bpal" style="background:var(--pu);display:none" onclick="toggleMobilePalette()">📋</button>
+      </div>
+    </div>
+    <div class="palette">
+      <div class="palhdr">Question Palette</div>
+      <div class="palscroll">
+        <div class="plleg">
+          <div class="pli"><div class="pld" style="background:var(--sf);border:1.5px solid var(--br2)"></div>Not Visited</div>
+          <div class="pli"><div class="pld" style="background:var(--grbg);border:1.5px solid var(--gr)"></div>Answered</div>
+          <div class="pli"><div class="pld" style="background:var(--ambg);border:1.5px solid var(--amb)"></div>Marked for Review</div>
+          <div class="pli"><div class="pld" style="background:var(--pubg);border:1.5px solid var(--pu)"></div>Answered + Marked</div>
+          <div class="pli"><div class="pld" style="background:var(--ny)"></div>Current</div>
+        </div>
+        <div id="palsecs"></div>
+      </div>
+      <div class="palft">
+        <div class="pfr"><span class="pfl">Answered</span><span class="pfv" id="pfans" style="color:var(--gr)">0</span></div>
+        <div class="pfr"><span class="pfl">Not Answered</span><span class="pfv" id="pfna" style="color:var(--rd)">30</span></div>
+        <div class="pfr"><span class="pfl">Marked</span><span class="pfv" id="pfmk" style="color:var(--am)">0</span></div>
+        <div class="prbar"><div class="prfill" id="prfill" style="width:0%"></div></div>
+        <div class="prtxt" id="prtxt">0 of 30 answered</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Overlay -->
+<div id="confov" class="overlay hidden">
+  <div class="ovcard">
+    <h2>Submit Test?</h2>
+    <p class="ovsub" id="confmsg">Review section summary before final submission.</p>
+    <div class="sstbl"><div class="ssth"><span>Section</span><span>Total</span><span>Answered</span><span>Remaining</span></div><div id="sstbody"></div></div>
+    <div class="cstats" id="cstats"></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn bol" style="flex:1" onclick="hideConf()">Review Answers</button>
+      <button class="btn bgr" style="flex:1" onclick="doSubmit()">✓ &nbsp;Submit Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- Proctor Warning -->
+<div id="procov" class="procov hidden">
+  <div style="font-size:44px;margin-bottom:10px">🚨</div>
+  <h2>Proctoring Violation</h2>
+  <p id="procmsg">You switched tabs. This is a proctored test. This has been recorded.</p>
+  <div class="procnum" id="procnum">2 warnings remaining</div>
+  <button class="btn bol" style="background:#fff;color:var(--rd);font-weight:700" onclick="dismissProc()">I Understand — Return to Test</button>
+</div>
+
+<!-- Mobile Palette Overlay -->
+<div id="mpaloverlay" onclick="if(event.target===this)toggleMobilePalette()">
+  <div id="mpalpanel">
+    <div class="palhdr">Question Palette <button id="mpalbtn-close" onclick="toggleMobilePalette()">✕ Close</button></div>
+    <div class="plleg" style="flex-direction:row;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div class="pli"><div class="pld" style="background:var(--sf);border:1.5px solid var(--br2)"></div>Not Visited</div>
+      <div class="pli"><div class="pld" style="background:var(--grbg);border:1.5px solid var(--gr)"></div>Answered</div>
+      <div class="pli"><div class="pld" style="background:var(--ambg);border:1.5px solid var(--amb)"></div>Marked</div>
+    </div>
+    <div id="mpalsecs"></div>
+  </div>
+</div>
+
+<!-- ══════════ SUBMITTED (no results shown) ══════════ -->
+<div id="submitted" style="display:none;flex-direction:column">
+  <div class="subwrap">
+    <div style="margin-bottom:22px">
+      <div class="gcbrand" style="justify-content:center">
+        <div class="gclogo" style="width:40px;height:40px;font-size:14px">GC</div>
+        <div><div style="color:#fff;font-size:15px;font-weight:800">Globe Creater</div><div style="color:rgba(255,255,255,.4);font-size:11px">Campus Hiring 2026 · Pune</div></div>
+      </div>
+    </div>
+    <div class="subicon">✅</div>
+    <h1>Test Submitted Successfully!</h1>
+    <p class="submain">Your answers have been securely submitted to the Globe Creater admin team. Thank you for taking the time to appear for our <strong>Campus Internship Drive 2026</strong>.</p>
+    <p class="submain"><strong style="color:rgba(255,255,255,.8)">No results are displayed here.</strong> All scores, cutoffs, and selection decisions are reviewed and communicated exclusively by the Globe Creater team.</p>
+    <div class="subidbox">
+      <div class="idlbl">Your Submission Reference</div>
+      <div class="idval" id="subref">GC-2026-001</div>
+    </div>
+    <p class="submain" style="margin-top:8px">Our team will contact you if you advance to the next stage (Group Discussion). Results are typically communicated within 3–5 business days.</p>
+    <p class="subnote">⚠ Do not attempt to retake the test. Duplicate submissions are automatically flagged to the admin team.</p>
+
+    <!-- THANK YOU / SOCIAL PANEL -->
+    <div class="subthank">
+      <div class="subthank-title">🙏 Thank You for Participating!</div>
+      <div class="subthank-msg">
+        We at <strong>Globe Creater, Pune</strong> truly appreciate your enthusiasm and effort. Stay connected with us for <strong>future campus drives, workshops, internship opportunities, and tech events</strong>. Follow us across our official channels — we'd love to have you in our growing community!
+      </div>
+      <div class="soc-grid">
+        <a class="soc-btn soc-web" href="https://globecreater.com" target="_blank" rel="noopener">
+          <div class="soc-icon">🌐</div>
+          <div class="soc-text"><span class="soc-name">Official Website</span><span class="soc-handle">globecreater.com</span></div>
+        </a>
+        <a class="soc-btn soc-li" href="https://linkedin.com/in/globe-creater" target="_blank" rel="noopener">
+          <div class="soc-icon">in</div>
+          <div class="soc-text"><span class="soc-name">LinkedIn</span><span class="soc-handle">globe-creater</span></div>
+        </a>
+        <a class="soc-btn soc-ig" href="https://instagram.com/globecreater_official" target="_blank" rel="noopener">
+          <div class="soc-icon">📸</div>
+          <div class="soc-text"><span class="soc-name">Instagram</span><span class="soc-handle">@globecreater_official</span></div>
+        </a>
+        <a class="soc-btn soc-fb" href="https://facebook.com/globecreater" target="_blank" rel="noopener">
+          <div class="soc-icon">f</div>
+          <div class="soc-text"><span class="soc-name">Facebook</span><span class="soc-handle">globecreater</span></div>
+        </a>
+      </div>
+    </div>
+
+    <button class="btn bgh" style="margin-top:22px;color:rgba(255,255,255,.45);border-color:rgba(255,255,255,.15);background:transparent" onclick="go('land')">← Back to Home</button>
+  </div>
+</div>
+
+<!-- ══════════ ADMIN PORTAL ══════════ -->
+<div id="adm" style="display:none;min-height:100vh;flex-direction:column;background:linear-gradient(155deg,#0F2548,#1A3A6E)">
+  <!-- LOGIN -->
+  <div id="alog" style="display:flex">
+    <div class="alcard">
+      <div class="allogo">GC</div>
+      <div class="altitle">Admin Portal</div>
+      <p class="alsub">Globe Creater — Campus Hiring System<br>Restricted Access · Authorised Personnel Only</p>
+      <div id="aerr" class="errmsg hidden"></div>
+      <div class="field"><label>Admin ID</label><input id="aid" placeholder="Enter your Admin ID" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="field"><label>Password</label><input id="apwd" type="password" placeholder="Enter your password" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="btn bny" style="width:100%;padding:12px;font-size:14px" onclick="doLogin()">Login to Admin Portal →</button>
+      <button class="btn bgh bsm" style="width:100%;margin-top:8px" onclick="go('land')">← Back to Home</button>
+    </div>
+  </div>
+  <!-- SHELL (hidden until login) -->
+  <div id="ash" style="display:none;flex:1;flex-direction:column;min-height:100vh">
+    <div class="atop">
+      <div class="gcbrand"><div class="gclogo">GC</div><div><div class="gcname">Globe Creater</div><div class="gctag" id="ainf">Admin Portal · Pune</div></div></div>
+      <div class="atopr">
+        <span class="rchip" id="arc">Admin</span>
+        <span class="uname" id="aun">—</span>
+        <button class="backbtn" onclick="doLogout()">Logout</button>
+      </div>
+    </div>
+    <div class="anav" id="anav"></div>
+    <div class="acont" id="acont"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════ QUESTIONS ══════════════════
+const QS=[
+  {id:1,sec:'ENG',sn:'English',diff:'E',q:"Choose the correct synonym of 'Benevolent'.",o:['Kind','Cruel','Angry','Lazy'],a:'A'},
+  {id:2,sec:'ENG',sn:'English',diff:'E',q:"Fill in the blank: She is good ___ painting.",o:['at','on','in','by'],a:'A'},
+  {id:3,sec:'ENG',sn:'English',diff:'E',q:"Identify the correctly spelled word.",o:['Accomodate','Accommodate','Acomodate','Acommodate'],a:'B'},
+  {id:4,sec:'ENG',sn:'English',diff:'H',q:"Which sentence is grammatically correct?",o:["He don't know the answer.","He doesn't knows the answer.","He doesn't know the answer.","He do not knows the answer."],a:'C'},
+  {id:5,sec:'ENG',sn:'English',diff:'H',q:"Complete the analogy: Doctor : Patient :: Teacher : ___",o:['School','Student','Knowledge','Lecture'],a:'B'},
+  {id:6,sec:'ENG',sn:'English',diff:'H',q:"Select the sentence using correct passive voice.",o:["The letter was wrote by him.","The letter was written by him.","The letter is write by him.","The letter were written by him."],a:'B'},
+  {id:7,sec:'MTH',sn:'Mathematics',diff:'E',q:"What is 15% of 200?",o:['25','30','35','40'],a:'B'},
+  {id:8,sec:'MTH',sn:'Mathematics',diff:'E',q:"Find the LCM of 4 and 6.",o:['12','24','8','6'],a:'A'},
+  {id:9,sec:'MTH',sn:'Mathematics',diff:'E',q:"If a=5 and b=3, find a²−b².",o:['16','25','8','34'],a:'A'},
+  {id:10,sec:'MTH',sn:'Mathematics',diff:'H',q:"A 120m train passes a pole in 12 sec. Find speed in km/hr.",o:['36','40','42','45'],a:'A'},
+  {id:11,sec:'MTH',sn:'Mathematics',diff:'H',q:"If 3x+2y=12 and x−y=1, find x.",o:['2','3','14/5','10/3'],a:'C'},
+  {id:12,sec:'MTH',sn:'Mathematics',diff:'H',q:"Shopkeeper gives 20% discount, earns 25% profit. CP=₹400. Find Marked Price.",o:['₹625','₹600','₹580','₹500'],a:'A'},
+  {id:13,sec:'QAP',sn:'Quantitative Aptitude',diff:'E',q:"A does work in 10 days, B in 15 days. Together in?",o:['5 days','6 days','8 days','7 days'],a:'B'},
+  {id:14,sec:'QAP',sn:'Quantitative Aptitude',diff:'E',q:"Simple interest on ₹1000 at 5% p.a. for 2 years?",o:['₹100','₹50','₹150','₹200'],a:'A'},
+  {id:15,sec:'QAP',sn:'Quantitative Aptitude',diff:'E',q:"Speed=60 km/hr. Time to travel 180 km?",o:['3 hrs','2 hrs','4 hrs','5 hrs'],a:'A'},
+  {id:16,sec:'QAP',sn:'Quantitative Aptitude',diff:'H',q:"Pipe A fills in 12 min, B in 18 min, C empties in 36 min. Time to fill with all open?",o:['9 min','10 min','12 min','8 min'],a:'A'},
+  {id:17,sec:'QAP',sn:'Quantitative Aptitude',diff:'H',q:"A sum doubles in 8 years at SI. Find the rate.",o:['12.5%','10%','8%','15%'],a:'A'},
+  {id:18,sec:'QAP',sn:'Quantitative Aptitude',diff:'H',q:"Milk:Water=3:1. Replace what fraction with water to get 1:1?",o:['1/3','1/4','1/2','2/3'],a:'C'},
+  {id:19,sec:'LGR',sn:'Logical Reasoning',diff:'E',q:"All cats are animals. All animals are living. Conclusion?",o:['All cats are living','Some cats are living','No cats are living','Cannot determine'],a:'A'},
+  {id:20,sec:'LGR',sn:'Logical Reasoning',diff:'E',q:"Find the odd one: 2, 4, 8, 16, 32, 34",o:['2','16','34','8'],a:'C'},
+  {id:21,sec:'LGR',sn:'Logical Reasoning',diff:'E',q:"If 'BOOK'='CPPL', code for 'DOOR'?",o:['EPPS','FPPQ','EPPQ','FPPR'],a:'A'},
+  {id:22,sec:'LGR',sn:'Logical Reasoning',diff:'H',q:"All engineers are graduates. No graduate is a student.\nConclusion: No engineer is a student:",o:['Definitely follows','Does not follow','May or may not','Is irrelevant'],a:'A'},
+  {id:23,sec:'LGR',sn:'Logical Reasoning',diff:'H',q:"Series: 3, 7, 15, 31, 63, ___",o:['127','125','120','131'],a:'A'},
+  {id:24,sec:'LGR',sn:'Logical Reasoning',diff:'H',q:"A is B's brother. C is A's mother. D is C's father. A is related to D as?",o:['Grandson','Son','Great-grandson','Nephew'],a:'A'},
+  {id:25,sec:'ABR',sn:'Abstract Reasoning',diff:'E',q:"3×3 matrix rows sum to 15. Missing: [4, ?, 6]",o:['5','6','7','4'],a:'A'},
+  {id:26,sec:'ABR',sn:'Abstract Reasoning',diff:'E',q:"Next in: ▲ □ ▲ □ ▲ ___",o:['□','▲','○','◇'],a:'A'},
+  {id:27,sec:'ABR',sn:'Abstract Reasoning',diff:'E',q:"Shape rotates 90° clockwise each step. After 4 steps?",o:['Original position','270° from original','180° from original','90° further'],a:'A'},
+  {id:28,sec:'ABR',sn:'Abstract Reasoning',diff:'H',q:"Big : Small :: Fast : ___",o:['Slow','Quick','Rapid','Heavy'],a:'A'},
+  {id:29,sec:'ABR',sn:'Abstract Reasoning',diff:'H',q:"3×3 grid, row+col sums=15. Corners: 2,4,6,8. Centre cell?",o:['5','7','9','3'],a:'B'},
+  {id:30,sec:'ABR',sn:'Abstract Reasoning',diff:'H',q:"Shape reflected horizontally then vertically. Result equals?",o:['180° rotation','90° rotation','No change','Horizontal mirror only'],a:'A'}
+];
+const SM={
+  ENG:{name:'English',color:'#185FA5',bg:'#E8F1FF'},
+  MTH:{name:'Mathematics',color:'#3B6D11',bg:'#EAF3DE'},
+  QAP:{name:'Quant. Aptitude',color:'#854F0B',bg:'#FAEEDA'},
+  LGR:{name:'Logical Reasoning',color:'#533AB7',bg:'#EEEDFE'},
+  ABR:{name:'Abstract Reasoning',color:'#0F6E56',bg:'#E1F5EE'}
+};
+const SECS=['ENG','MTH','QAP','LGR','ABR'];
+const GDP=['Communication Clarity','Collaborative Response','Constructive Challenge','Reasoning Quality','Leadership & Initiative','Composure Under Pressure','Content Knowledge','Listening Skills'];
+const F2FP=['Technical Knowledge','Problem Solving','Code Fluency','Communication','Resoluteness','Coachability','Project Logic','Domain Fit'];
+
+// Credentials handled directly in doLogin()
+// Admin: admin001 / admin123   Super Admin: super001 / super123
+
+const TTIME=30*60;
+
+// ══════════════════ STORAGE ══════════════════
+const DB={
+  g:k=>{try{const v=localStorage.getItem('gc_'+k);return v?JSON.parse(v):null}catch{return null}},
+  s:(k,v)=>{try{localStorage.setItem('gc_'+k,JSON.stringify(v))}catch(e){console.warn('Storage error',e)}},
+  subs:()=>DB.g('subs')||[],
+  addSub:s=>{const a=DB.subs();a.push(s);DB.s('subs',a)},
+  gd:()=>DB.g('gd')||{},
+  saveGD:(c,d)=>{const g=DB.gd();g[c]=d;DB.s('gd',g)},
+  f2f:()=>DB.g('f2f')||{},
+  saveF2F:(c,d)=>{const f=DB.f2f();f[c]=d;DB.s('f2f',f)},
+  cuts:()=>DB.g('cuts')||{aptPct:50,aptHard:4,secMin:3,gdPct:60,f2fPct:60},
+  saveCuts:c=>DB.s('cuts',c)
+};
+
+// ══════════════════ ROUTING ══════════════════
+function showPage(id){
+  ['land','stu','test','submitted','adm'].forEach(p=>{
+    const el=document.getElementById(p);
+    if(el) el.style.display='none';
+  });
+  const target=document.getElementById(id);
+  if(target) target.style.display='flex';
+}
+
+function go(where){
+  stopProc();
+  if(where==='land'){showPage('land');}
+  else if(where==='stu'){showPage('stu');setStep(1);}
+  else if(where==='adm'){showPage('adm');showLoginPanel();}
+}
+
+window.onload=function(){
+  document.getElementById('sdt').value=new Date().toISOString().slice(0,10);
+  showPage('land');
+};
+
+function toast(msg,type){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.background=type==='gr'?'#16A34A':type==='rd'?'#DC2626':type==='am'?'#D97706':'#1A3A6E';
+  t.classList.add('show');
+  clearTimeout(t._t);
+  t._t=setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+// ══════════════════ STUDENT STEPS ══════════════════
+let D={c1:false,c2:false};
+function setStep(n){
+  // Show/hide step views
+  document.getElementById('sv1').classList.toggle('hidden',n!==1);
+  document.getElementById('sv2').classList.toggle('hidden',n!==2);
+  document.getElementById('sv3').classList.toggle('hidden',n!==3);
+  // Update step indicators
+  for(let i=1;i<=4;i++){
+    const sn=document.getElementById('sn'+i);
+    const sl=document.getElementById('sl'+i);
+    if(sn){
+      sn.className='sn '+(i<n?'sn-d':i===n?'sn-a':'sn-t');
+    }
+    if(sl){
+      sl.className='sl '+(i<n?'sl-d':i===n?'sl-a':'sl-t');
+    }
+  }
+  for(let i=1;i<=3;i++){
+    const line=document.getElementById('line'+i);
+    if(line) line.className='sline '+(i<n?'sline-d':'sline-t');
+  }
+}
+function toggleC(id,n){
+  const el=document.getElementById(id);
+  el.classList.toggle('on');
+  D['c'+n]=el.classList.contains('on');
+}
+function goInstr(){
+  if(!D.c1||!D.c2){toast('Please accept both declarations.','am');return;}
+  setStep(3);
+}
+function sReg(){
+  const g=id=>document.getElementById(id).value.trim();
+  const cid=g('scid'),nm=g('snm'),em=g('sem'),mob=g('smob'),col=g('scol'),dt=g('sdt');
+  const err=document.getElementById('serr');
+  if(!cid||!nm||!em||!mob||!col||!dt){
+    err.textContent='Please fill all required fields marked *.';
+    err.classList.remove('hidden');return;
+  }
+  if(!/^\d{10}$/.test(mob)){
+    err.textContent='Please enter a valid 10-digit mobile number.';
+    err.classList.remove('hidden');return;
+  }
+  const dup=DB.subs().find(s=>s.candidateId===cid);
+  if(dup){
+    err.textContent='This Candidate ID has already been used to submit a test. Contact the admin if this is an error.';
+    err.classList.remove('hidden');return;
+  }
+  err.classList.add('hidden');
+  T.stu={candidateId:cid,name:nm,email:em,mobile:mob,college:col,driveDate:dt,course:g('scr'),cgpa:g('scg')};
+  setStep(2);
+}
+
+// ══════════════════ TEST STATE ══════════════════
+let T={
+  stu:{},ans:{},marked:new Set(),curQ:0,
+  tLeft:TTIME,tmr:null,viol:0
+};
+
+// ══════════════════ PROCTORING ══════════════════
+let PH={};
+function startProc(){
+  PH.ctx=e=>{e.preventDefault();return false;};
+  document.addEventListener('contextmenu',PH.ctx);
+  PH.cp=e=>e.preventDefault();
+  ['copy','cut','paste'].forEach(ev=>document.addEventListener(ev,PH.cp));
+  PH.key=e=>{
+    if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(e.key))||(e.ctrlKey&&['u','U'].includes(e.key))){
+      e.preventDefault();e.stopPropagation();
+    }
+  };
+  document.addEventListener('keydown',PH.key,true);
+  PH.vis=()=>{
+    if(document.hidden&&T.tmr){
+      T.viol++;
+      const rem=3-T.viol;
+      document.getElementById('procmsg').textContent=`You switched tabs ${T.viol} time(s). This has been recorded and will be reported to the admin.`;
+      document.getElementById('procnum').textContent=rem>0?`${rem} warning(s) before automatic termination`:'FINAL WARNING';
+      document.getElementById('procov').classList.remove('hidden');
+      if(T.viol>=3){
+        setTimeout(()=>{
+          document.getElementById('procmsg').textContent='3 violations exceeded. Your test has been automatically terminated and flagged.';
+          document.getElementById('procnum').textContent='TEST TERMINATED';
+          document.querySelector('#procov button').textContent='View Submission Status';
+          document.querySelector('#procov button').onclick=()=>doSubmit(true);
+        },100);
+      }
+    }
+  };
+  document.addEventListener('visibilitychange',PH.vis);
+  const el=document.documentElement;
+  if(el.requestFullscreen) el.requestFullscreen().catch(()=>{});
+}
+function stopProc(){
+  if(PH.ctx) document.removeEventListener('contextmenu',PH.ctx);
+  if(PH.cp){['copy','cut','paste'].forEach(ev=>document.removeEventListener(ev,PH.cp));}
+  if(PH.key) document.removeEventListener('keydown',PH.key,true);
+  if(PH.vis) document.removeEventListener('visibilitychange',PH.vis);
+  PH={};
+  try{if(document.exitFullscreen) document.exitFullscreen();}catch(e){}
+}
+function dismissProc(){
+  if(T.viol>=3){doSubmit(true);return;}
+  document.getElementById('procov').classList.add('hidden');
+}
+
+// ══════════════════ START TEST ══════════════════
+function startTest(){
+  T.ans={};T.marked=new Set();T.curQ=0;T.tLeft=TTIME;T.viol=0;
+  document.getElementById('tcn').textContent=T.stu.name;
+  document.getElementById('tci').textContent=T.stu.candidateId+' | '+T.stu.college;
+  buildStabs();buildPalette();buildMobilePalette();
+  // Show palette toggle button on small screens
+  const bpal=document.getElementById('bpal');
+  if(bpal) bpal.style.display=window.innerWidth<=480?'inline-flex':'none';
+  showPage('test');
+  document.getElementById('test').style.display='flex';
+  startProc();
+  T.tmr=setInterval(()=>{
+    T.tLeft--;
+    if(T.tLeft<=0){clearInterval(T.tmr);T.tLeft=0;doSubmit();}
+    else{updTimer();updPal();}
+  },1000);
+  renderQ();
+}
+
+function updTimer(){
+  const t=T.tLeft,m=String(Math.floor(t/60)).padStart(2,'0'),s=String(t%60).padStart(2,'0');
+  const tn=document.getElementById('tdig');
+  if(tn) tn.textContent=m+':'+s;
+  const hdr=document.getElementById('thdr');
+  if(hdr){
+    hdr.className='thdr';
+    if(t<=300) hdr.classList.add('tw');
+    if(t<=60) hdr.classList.add('tc');
+  }
+}
+
+function buildStabs(){
+  const c=document.getElementById('stabs');c.innerHTML='';
+  SECS.forEach(sec=>{
+    const t=document.createElement('div');
+    t.className='stab';t.id='stb-'+sec;
+    t.innerHTML=`${SM[sec].name} <span class="sc" id="sc-${sec}">0/6</span>`;
+    t.onclick=()=>{T.curQ=QS.findIndex(q=>q.sec===sec);renderQ();};
+    c.appendChild(t);
+  });
+}
+function updStabs(){
+  SECS.forEach(sec=>{
+    const tab=document.getElementById('stb-'+sec);
+    const sc=document.getElementById('sc-'+sec);
+    if(!tab||!sc) return;
+    const all=QS.filter(q=>q.sec===sec).length;
+    const done=QS.filter((q,i)=>q.sec===sec&&T.ans[i]!==undefined).length;
+    tab.className='stab'+(QS[T.curQ].sec===sec?' act':'')+(done===all?' sd':'');
+    sc.textContent=done+'/'+all;
+  });
+}
+
+function buildPalette(){
+  const c=document.getElementById('palsecs');c.innerHTML='';
+  SECS.forEach(sec=>{
+    const wrap=document.createElement('div');wrap.className='psec';
+    wrap.innerHTML=`<div class="psecn" style="color:${SM[sec].color}">${SM[sec].name}</div>`;
+    const g=document.createElement('div');g.className='palgrid';g.id='pg-'+sec;
+    QS.map((q,i)=>({q,i})).filter(x=>x.q.sec===sec).forEach(({q,i})=>{
+      const b=document.createElement('div');b.className='qb';b.id='qb-'+i;b.textContent=i+1;
+      b.onclick=()=>{T.curQ=i;renderQ();};
+      g.appendChild(b);
+    });
+    wrap.appendChild(g);c.appendChild(wrap);
+  });
+}
+
+function buildMobilePalette(){
+  const c=document.getElementById('mpalsecs');if(!c) return;c.innerHTML='';
+  SECS.forEach(sec=>{
+    const wrap=document.createElement('div');wrap.style.marginBottom='10px';
+    wrap.innerHTML=`<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:${SM[sec].color};margin-bottom:5px;letter-spacing:.5px">${SM[sec].name}</div>`;
+    const g=document.createElement('div');g.className='palgrid';g.id='mpg-'+sec;
+    QS.map((q,i)=>({q,i})).filter(x=>x.q.sec===sec).forEach(({q,i})=>{
+      const b=document.createElement('div');b.className='qb';b.id='mqb-'+i;b.textContent=i+1;
+      b.onclick=()=>{T.curQ=i;toggleMobilePalette();renderQ();};
+      g.appendChild(b);
+    });
+    wrap.appendChild(g);c.appendChild(wrap);
+  });
+}
+function toggleMobilePalette(){
+  const ov=document.getElementById('mpaloverlay');
+  if(!ov) return;
+  ov.classList.toggle('open');
+  if(ov.classList.contains('open')) updMobilePal();
+}
+function updMobilePal(){
+  QS.forEach((_,i)=>{
+    const b=document.getElementById('mqb-'+i);if(!b) return;
+    const a=T.ans[i]!==undefined,m=T.marked.has(i);
+    b.className='qb'+(i===T.curQ?' qc':a&&m?' qa qm':a?' qa':m?' qm':'');
+  });
+}
+function updPal(){
+  const done=Object.keys(T.ans).length;
+  const pf=document.getElementById('prfill');if(pf) pf.style.width=(done/30*100)+'%';
+  const pt=document.getElementById('prtxt');if(pt) pt.textContent=done+' of 30 answered';
+  const tv=document.getElementById('tprv');if(tv) tv.textContent=done+'/30';
+  const pa=document.getElementById('pfans');if(pa) pa.textContent=done;
+  const pna=document.getElementById('pfna');if(pna) pna.textContent=30-done;
+  const pm=document.getElementById('pfmk');if(pm) pm.textContent=T.marked.size;
+  QS.forEach((_,i)=>{
+    const b=document.getElementById('qb-'+i);if(!b) return;
+    const a=T.ans[i]!==undefined,m=T.marked.has(i);
+    b.className='qb'+(i===T.curQ?' qc':a&&m?' qa qm':a?' qa':m?' qm':'');
+  });
+  updMobilePal();
+  updStabs();
+}
+
+function renderQ(){
+  const q=QS[T.curQ];
+  document.getElementById('qmeta').innerHTML=
+    `<span class="qnbdg">Question ${T.curQ+1} of 30</span>
+     <span class="qsbdg" style="background:${SM[q.sec].bg};color:${SM[q.sec].color}">${SM[q.sec].name}</span>
+     <span class="qdb d${q.diff}">${q.diff==='E'?'Easy':'Hard'}</span>`;
+  document.getElementById('qtxt').textContent=q.q;
+  const oc=document.getElementById('qopts');oc.innerHTML='';
+  ['A','B','C','D'].forEach((l,i)=>{
+    const d=document.createElement('div');
+    d.className='opt'+(T.ans[T.curQ]===l?' sel':'');
+    d.innerHTML=`<div class="oc">${l}</div><div class="ot">${q.o[i]}</div>`;
+    d.onclick=()=>{T.ans[T.curQ]=l;renderQ();updPal();};
+    oc.appendChild(d);
+  });
+  const bp=document.getElementById('bprev');if(bp) bp.disabled=T.curQ===0;
+  const bm=document.getElementById('bmrn');
+  if(bm){
+    bm.className='bmrn'+(T.marked.has(T.curQ)?' on':'');
+    bm.textContent=T.marked.has(T.curQ)?'⚑ Marked for Review':'⚑ Mark for Review & Next';
+  }
+  updPal();
+}
+
+function navQ(d){const n=T.curQ+d;if(n<0||n>29) return;T.curQ=n;renderQ();}
+function doSaveNext(){if(T.curQ<29){T.curQ++;renderQ();}}
+function clrAns(){delete T.ans[T.curQ];renderQ();updPal();}
+function doMark(){
+  if(T.marked.has(T.curQ)) T.marked.delete(T.curQ);
+  else T.marked.add(T.curQ);
+  if(T.curQ<29) T.curQ++;
+  renderQ();updPal();
+}
+
+function showConf(){
+  const done=Object.keys(T.ans).length,un=30-done;
+  document.getElementById('confmsg').textContent=un>0?`You have ${un} unanswered question(s). They will score 0.`:'All 30 questions answered. Ready to submit.';
+  const body=document.getElementById('sstbody');body.innerHTML='';
+  SECS.forEach(sec=>{
+    const all=QS.map((q,i)=>({q,i})).filter(x=>x.q.sec===sec);
+    const ans=all.filter(x=>T.ans[x.i]!==undefined).length;
+    const rem=all.length-ans;
+    const row=document.createElement('div');row.className='sstr';
+    row.innerHTML=`<span style="font-weight:600;color:${SM[sec].color}">${SM[sec].name}</span><span>${all.length}</span>
+      <span style="color:var(--gr);font-weight:600">${ans}</span>
+      <span style="color:${rem>0?'var(--rd)':'var(--gr)'};font-weight:600">${rem}</span>`;
+    body.appendChild(row);
+  });
+  const t=T.tLeft,m=String(Math.floor(t/60)).padStart(2,'0'),s=String(t%60).padStart(2,'0');
+  document.getElementById('cstats').innerHTML=
+    `<div class="cst"><div class="cstv" style="color:var(--gr)">${done}</div><div class="cstl">Answered</div></div>
+     <div class="cst"><div class="cstv" style="color:${un>0?'var(--rd)':'var(--gr)'}">${un}</div><div class="cstl">Unanswered</div></div>
+     <div class="cst"><div class="cstv" style="color:var(--am)">${T.marked.size}</div><div class="cstl">Marked</div></div>
+     <div class="cst"><div class="cstv">${m}:${s}</div><div class="cstl">Time Left</div></div>`;
+  document.getElementById('confov').classList.remove('hidden');
+}
+function hideConf(){document.getElementById('confov').classList.add('hidden');}
+
+function doSubmit(term=false){
+  if(T.tmr) clearInterval(T.tmr);
+  document.getElementById('confov').classList.add('hidden');
+  document.getElementById('procov').classList.add('hidden');
+  stopProc();
+  const taken=TTIME-T.tLeft;
+  const mm=String(Math.floor(taken/60)).padStart(2,'0'),ss=String(taken%60).padStart(2,'0');
+  const sc={ENG:0,MTH:0,QAP:0,LGR:0,ABR:0};
+  let easy=0,hard=0;
+  QS.forEach((q,i)=>{if(T.ans[i]===q.a){sc[q.sec]++;if(q.diff==='E')easy++;else hard++;}});
+  const tot=Object.values(sc).reduce((a,b)=>a+b,0);
+  const pct=parseFloat((tot/30*100).toFixed(1));
+  const cuts=DB.cuts();
+  // Determine section-wise pass/fail
+  const secPass=SECS.every(s=>sc[s]>=cuts.secMin);
+  const aptStatus=(pct>=cuts.aptPct&&secPass)?'PASS':'FAIL';
+  const failReason=pct<cuts.aptPct?`Score ${pct}% below cutoff ${cuts.aptPct}%`:!secPass?`Below minimum in: ${SECS.filter(s=>sc[s]<cuts.secMin).map(s=>SM[s].name).join(', ')}`:'All criteria met';
+  const result={
+    candidateId:T.stu.candidateId,name:T.stu.name,email:T.stu.email,
+    mobile:T.stu.mobile,college:T.stu.college,course:T.stu.course||'',
+    cgpa:T.stu.cgpa||'',driveDate:T.stu.driveDate,
+    submittedAt:new Date().toISOString(),timeTaken:`${mm}:${ss}`,
+    proctorViolations:T.viol,terminatedByProctor:term,
+    answers:{...T.ans},
+    scores:{...sc,total:tot,percentage:pct,easyScore:easy,hardScore:hard},
+    sectionStatus:SECS.reduce((a,s)=>({...a,[s]:sc[s]>=cuts.secMin?'OK':'BELOW_MIN'}),{}),
+    failReason:failReason,
+    status:aptStatus
+  };
+  DB.addSub(result);
+  // Show NO RESULTS — just submission confirmation
+  document.getElementById('subref').textContent=T.stu.candidateId;
+  showPage('submitted');
+  document.getElementById('submitted').style.display='flex';
+}
+
+// ══════════════════ ADMIN LOGIN ══════════════════
+let ADM={user:null,tab:'dashboard',gdF:{cid:'',sc:{},rem:''},f2fF:{cid:'',sc:{},rem:''},selC:null};
+
+function showLoginPanel(){
+  var alog=document.getElementById('alog');
+  var ash=document.getElementById('ash');
+  if(alog){alog.style.display='flex';alog.style.minHeight='100vh';}
+  if(ash){ash.style.display='none';}
+  var err=document.getElementById('aerr');
+  if(err){err.classList.add('hidden');}
+}
+
+function quickLogin(uid,upwd){
+  document.getElementById('aid').value=uid;
+  document.getElementById('apwd').value=upwd;
+  doLogin();
+}
+
+function doLogin(){
+  var uid=document.getElementById('aid').value.trim();
+  var upwd=document.getElementById('apwd').value.trim();
+  var errEl=document.getElementById('aerr');
+  
+  // Explicit credential check - also handle common mistakes
+  var isAdmin=(uid==='admin001'&&upwd==='admin123')||(uid==='admin'&&upwd==='admin123');
+  var isSuper=(uid==='super001'&&upwd==='super123')||(uid==='super'&&upwd==='super123');
+  
+  // Auto-correct: if they swapped ID and password
+  if(!isAdmin&&!isSuper){
+    if((upwd==='admin001'&&uid==='admin123')||(uid==='admin123'&&upwd==='admin001')){
+      isAdmin=true; // They swapped the fields
+    }
+    if((upwd==='super001'&&uid==='super123')||(uid==='super123'&&upwd==='super001')){
+      isSuper=true;
+    }
+  }
+  
+  if(!isAdmin&&!isSuper){
+    errEl.textContent='❌ Incorrect Admin ID or Password. Please check your credentials and try again.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  
+  errEl.classList.add('hidden');
+  
+  // Set user object directly
+  if(isSuper){
+    ADM.user={id:'super001',role:'super',name:'Super Admin'};
+  } else {
+    ADM.user={id:'admin001',role:'admin',name:'Admin User'};
+  }
+  ADM.tab='dashboard';
+  
+  // Show admin shell
+  document.getElementById('alog').style.display='none';
+  document.getElementById('ash').style.display='flex';
+  document.getElementById('ash').style.flexDirection='column';
+  document.getElementById('ash').style.flex='1';
+  
+  var rc=document.getElementById('arc');
+  rc.className='rchip '+(isSuper?'rsup':'radm');
+  rc.textContent=isSuper?'⭐ Super Admin':'Admin';
+  document.getElementById('aun').textContent=ADM.user.name;
+  
+  var subs=DB.subs();
+  document.getElementById('ainf').textContent='Admin Portal · Globe Creater · Pune | '+subs.length+' submission(s)';
+  
+  buildAdmTabs();
+  buildAdmContent();
+}
+
+function doLogout(){
+  ADM.user=null;
+  document.getElementById('aid').value='';
+  document.getElementById('apwd').value='';
+  go('land');
+}
+
+// ══════════════════ ADMIN TABS ══════════════════
+const TABS_ADM=[
+  {id:'dashboard',l:'📊 Dashboard'},
+  {id:'aptitude',l:'📋 Aptitude Results'},
+  {id:'gd',l:'🎤 GD Evaluation'},
+  {id:'f2f',l:'🧑‍💼 F2F Interview'},
+  {id:'pipeline',l:'🔍 Full Pipeline'},
+  {id:'analytics',l:'📈 Analytics'},
+  {id:'candidates',l:'👥 Candidates'}
+];
+const TABS_SUP=[
+  ...TABS_ADM,
+  {id:'cutoffs',l:'⚙ Cutoffs & Filters'},
+  {id:'export',l:'⬇ Export to Excel'},
+  {id:'offers',l:'📄 Offer Letters'}
+];
+
+function buildAdmTabs(){
+  if(!ADM.user) return;
+  const tabs=ADM.user.role==='super'?TABS_SUP:TABS_ADM;
+  const subs=DB.subs(),cuts=DB.cuts();
+  const nav=document.getElementById('anav');nav.innerHTML='';
+  tabs.forEach(t=>{
+    const el=document.createElement('div');
+    el.className='ntab'+(ADM.tab===t.id?' act':'');
+    el.textContent=t.l;
+    if(t.id==='aptitude'&&subs.length) el.innerHTML+=` <span class="tbdg">${subs.length}</span>`;
+    if(t.id==='gd'){
+      const n=subs.filter(s=>s.scores.percentage>=cuts.aptPct).length;
+      if(n) el.innerHTML+=` <span class="tbdg">${n}</span>`;
+    }
+    el.onclick=()=>{ADM.tab=t.id;buildAdmTabs();buildAdmContent();};
+    nav.appendChild(el);
+  });
+}
+
+function buildAdmContent(){
+  const c=document.getElementById('acont');c.innerHTML='';
+  const fns={
+    dashboard:tabDash,aptitude:tabApt,gd:tabGD,f2f:tabF2F,
+    pipeline:tabPipe,analytics:tabAna,candidates:tabCands,
+    cutoffs:tabCuts,export:tabExp,offers:tabOffers
+  };
+  if(fns[ADM.tab]) c.appendChild(fns[ADM.tab]());
+}
+
+// DOM helpers
+function mk(tag,cls,html){
+  const e=document.createElement(tag);
+  if(cls) e.className=cls;
+  if(html!==undefined) e.innerHTML=html;
+  return e;
+}
+function dv(cls,html){return mk('div',cls,html);}
+function pH(st){
+  const map={
+    'PASS':'pgr','FAIL':'prd','SHORTLISTED':'pgr','ELIMINATED':'prd',
+    'SELECTED':'psel','NOT SELECTED':'prd','PENDING':'pny',
+    'APT PASS':'pgr','APT FAIL':'prd','GD PASS':'pgr','GD FAIL':'prd',
+    'IN PROGRESS':'pam','INTERN OFFER':'pgo'
+  };
+  return `<span class="pill ${map[st]||'pny'}">${st}</span>`;
+}
+
+function mkTbl(cols,hdrs,rows,minW){
+  const w=dv('tw');const sx=dv('tsx');
+  const h=mk('div','th');h.style.gridTemplateColumns=cols;if(minW) h.style.minWidth=minW+'px';
+  hdrs.forEach(x=>{const s=mk('span');s.textContent=x;h.appendChild(s);});
+  sx.appendChild(h);
+  rows.forEach(row=>{
+    const tr=mk('div','tr');tr.style.gridTemplateColumns=cols;if(minW) tr.style.minWidth=minW+'px';
+    if(row._cl) tr.onclick=row._cl;
+    const cells=row.cells||row;
+    cells.forEach(cell=>{
+      const s=mk('span');
+      if(typeof cell==='string'&&(cell.includes('<span')||cell.includes('<button'))) s.innerHTML=cell;
+      else s.textContent=String(cell===null||cell===undefined?'—':cell);
+      tr.appendChild(s);
+    });
+    sx.appendChild(tr);
+  });
+  w.appendChild(sx);return w;
+}
+
+// ── DASHBOARD ──
+function tabDash(){
+  const w=dv('');
+  const subs=DB.subs(),cuts=DB.cuts(),gds=DB.gd(),f2fs=DB.f2f();
+  const passed=subs.filter(s=>s.scores.percentage>=cuts.aptPct).length;
+  const gdD=Object.keys(gds).length,f2fD=Object.keys(f2fs).length;
+  const sel=Object.values(f2fs).filter(f=>Object.values(f.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.f2fPct).length;
+  const flags=subs.filter(s=>s.proctorViolations>0).length;
+  const pendingGD=Math.max(0,passed-gdD);
+  const gdPassed=Object.values(gds).filter(g=>Object.values(g.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.gdPct).length;
+  const pendingF2F=Math.max(0,gdPassed-f2fD);
+  const mr=dv('mrow');
+  [{v:subs.length,l:'Total Appeared',c:''},{v:passed,l:'Aptitude Passed',c:'mc-gr'},
+   {v:gdD,l:'GD Evaluated',c:''},{v:gdPassed,l:'GD Shortlisted',c:'mc-gr'},
+   {v:f2fD,l:'F2F Done',c:''},{v:sel,l:'Interns Selected',c:sel?'mc-gr':''},
+   {v:flags,l:'Proctor Flags',c:flags?'mc-rd':''}
+  ].forEach(({v,l,c})=>{
+    const m=dv('mc '+c);m.innerHTML=`<div class="mcv">${v}</div><div class="mcl">${l}</div>`;mr.appendChild(m);
+  });
+  w.appendChild(mr);
+
+  // Pending actions alert
+  if(pendingGD>0||pendingF2F>0){
+    const alert=dv('warnmsg');alert.style.marginBottom='16px';
+    alert.innerHTML=`<strong>⏳ Action Required:</strong>
+      ${pendingGD>0?`<br>• <strong>${pendingGD}</strong> aptitude-passed candidate(s) awaiting GD evaluation`:''}
+      ${pendingF2F>0?`<br>• <strong>${pendingF2F}</strong> GD-cleared candidate(s) awaiting F2F interview`:''}
+      ${flags>0?`<br>• <strong>${flags}</strong> proctor-flagged candidate(s) need manual review before advancing`:''}`;
+    w.appendChild(alert);
+  }
+
+  if(!subs.length){
+    w.appendChild(dv('empty','<div class="ei">📭</div><h4>No Submissions Yet</h4><p>Student submissions appear here automatically after candidates complete the aptitude test.</p>'));
+    return w;
+  }
+
+  // Pipeline progress card
+  const pp=dv('card');pp.style.cssText='padding:16px;margin-bottom:16px';
+  pp.appendChild(dv('slabel','Drive Pipeline Progress'));
+  const stages=[
+    {l:'Aptitude',total:subs.length,done:passed,color:'var(--ny)'},
+    {l:'GD',total:passed,done:gdPassed,color:'var(--am)'},
+    {l:'F2F',total:gdPassed,done:sel,color:'var(--pu)'},
+    {l:'Selected',total:subs.length,done:sel,color:'var(--gr)'}
+  ];
+  stages.forEach(({l,total,done,color})=>{
+    const pct=total>0?(done/total*100).toFixed(0):0;
+    const row=dv('sarow');
+    row.innerHTML=`<div class="san" style="font-weight:600;width:80px">${l}</div>
+      <div class="sabw"><div class="sabf" style="width:${pct}%;background:${color}"></div></div>
+      <div class="sav" style="width:70px;text-align:right">${done}/${total}</div>`;
+    pp.appendChild(row);
+  });
+  w.appendChild(pp);
+
+  // Section averages
+  const sc=dv('card',null);sc.style.cssText='padding:16px;margin-bottom:16px';
+  sc.appendChild(dv('slabel','Section-wise Average Scores'));
+  SECS.forEach(sec=>{
+    const avg=subs.reduce((a,s)=>a+(s.scores[sec]||0),0)/subs.length;
+    const row=dv('sarow');
+    row.innerHTML=`<div class="san"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${SM[sec].color};margin-right:7px"></span>${SM[sec].name}</div>
+      <div class="sabw"><div class="sabf" style="width:${avg/6*100}%;background:${SM[sec].color}"></div></div>
+      <div class="sav">${avg.toFixed(1)}/6</div>`;
+    sc.appendChild(row);
+  });
+  w.appendChild(sc);
+
+  w.appendChild(dv('slabel','Recent Submissions (Latest 10)'));
+  const tbl=mkTbl('1.3fr 2fr 1.8fr 1fr 1fr 1fr .6fr 1.2fr',
+    ['Candidate ID','Name','College','Apt %','Easy','Hard','Flags','Status'],
+    subs.slice().reverse().slice(0,10).map(s=>({
+      cells:[s.candidateId,s.name,s.college,s.scores.percentage+'%',s.scores.easyScore+'/15',s.scores.hardScore+'/15',s.proctorViolations||0,pH(s.status)],
+      _cl:()=>{ADM.selC=s.candidateId;ADM.tab='aptitude';buildAdmTabs();buildAdmContent();}
+    })));
+  w.appendChild(tbl);
+
+  // Quick actions for super admin
+  if(ADM.user.role==='super'&&subs.length){
+    const qa=dv('sfc');qa.appendChild(dv('sfct','⚡ Quick Actions'));
+    const qaBtns=dv('',null);qaBtns.style.cssText='display:flex;gap:8px;flex-wrap:wrap';
+    const addQA=(label,tab,cls='btn bol bsm')=>{
+      const b=mk('button',cls,label);
+      b.onclick=()=>{ADM.tab=tab;buildAdmTabs();buildAdmContent();};
+      qaBtns.appendChild(b);
+    };
+    addQA('📊 View Analytics','analytics');
+    addQA('📋 Aptitude Results','aptitude');
+    if(pendingGD>0) addQA(`🎤 Evaluate ${pendingGD} GD Candidate(s)`,'gd','btn bgr bsm');
+    if(pendingF2F>0) addQA(`🧑‍💼 Conduct ${pendingF2F} F2F Interview(s)`,'f2f','btn bgr bsm');
+    if(sel>0) addQA(`📄 Generate ${sel} Offer Letter(s)`,'offers','btn bny bsm');
+    addQA('⬇ Export All Data','export');
+    qa.appendChild(qaBtns);
+    w.appendChild(qa);
+  }
+  return w;
+}
+
+// ── APTITUDE RESULTS ──
+function tabApt(){
+  const w=dv('');
+  const subs=DB.subs(),cuts=DB.cuts();
+  const passed=subs.filter(s=>s.status==='PASS');
+  const failed=subs.filter(s=>s.status==='FAIL');
+  w.appendChild(dv('slabel',`Aptitude Results — Cutoff ≥${cuts.aptPct}% | Section Min: ${cuts.secMin}/6 | ${subs.length} Candidate(s)`));
+  if(!subs.length){w.appendChild(dv('empty','<div class="ei">📋</div><h4>No Submissions</h4><p>No aptitude results yet.</p>'));return w;}
+
+  // Quick summary bar
+  const qsb=dv('mrow');
+  [{v:subs.length,l:'Total',c:''},{v:passed.length,l:'Passed',c:'mc-gr'},{v:failed.length,l:'Failed',c:'mc-rd'},
+   {v:subs.filter(s=>s.proctorViolations>0).length,l:'Flagged',c:'mc-rd'}
+  ].forEach(({v,l,c})=>{const m=dv('mc '+c);m.innerHTML=`<div class="mcv">${v}</div><div class="mcl">${l}</div>`;qsb.appendChild(m);});
+  w.appendChild(qsb);
+
+  // Passed candidates with Manual Shortlist for GD button
+  if(passed.length){
+    const ps=dv('sfc');
+    ps.appendChild(dv('sfct',`✅ Aptitude PASSED — ${passed.length} Candidate(s) Eligible for GD`));
+    ps.appendChild(dv('infomsg mb12','Click <strong>Shortlist for GD</strong> to manually advance a candidate. You can also review their answer script by clicking the row.'));
+    const tbl=mkTbl('1.1fr 1.8fr 1.5fr .7fr .7fr .7fr .7fr .7fr 1fr 1fr .9fr .6fr 1.4fr',
+      ['ID','Name','College','ENG','MTH','QAP','LGR','ABR','Total','%','Easy','Flags','Action'],
+      passed.map(s=>({
+        cells:[s.candidateId,s.name,s.college,s.scores.ENG+'/6',s.scores.MTH+'/6',s.scores.QAP+'/6',s.scores.LGR+'/6',s.scores.ABR+'/6',
+          s.scores.total+'/30',s.scores.percentage+'%',s.scores.easyScore+'/15',s.proctorViolations||0,
+          `<button class="btn bgr bsm" onclick="event.stopPropagation();advToGD('${s.candidateId}','${s.name.replace(/'/g,"\\'")}')">🎤 Shortlist GD</button>`],
+        _cl:()=>{ADM.selC=ADM.selC===s.candidateId?null:s.candidateId;buildAdmContent();}
+      })),960);
+    ps.appendChild(tbl);
+    w.appendChild(ps);
+  }
+
+  // Failed candidates
+  if(failed.length){
+    const fs=dv('sfc');
+    fs.appendChild(dv('sfct',`❌ Aptitude FAILED — ${failed.length} Candidate(s) Eliminated`));
+    const tbl=mkTbl('1.1fr 1.8fr 1.5fr .7fr .7fr .7fr .7fr .7fr 1fr 1fr .9fr 1.2fr 1.5fr',
+      ['ID','Name','College','ENG','MTH','QAP','LGR','ABR','Total','%','Easy','Fail Reason','Status'],
+      failed.map(s=>({
+        cells:[s.candidateId,s.name,s.college,
+          `<span style="color:${s.scores.ENG<cuts.secMin?'var(--rd)':''}">${s.scores.ENG}/6</span>`,
+          `<span style="color:${s.scores.MTH<cuts.secMin?'var(--rd)':''}">${s.scores.MTH}/6</span>`,
+          `<span style="color:${s.scores.QAP<cuts.secMin?'var(--rd)':''}">${s.scores.QAP}/6</span>`,
+          `<span style="color:${s.scores.LGR<cuts.secMin?'var(--rd)':''}">${s.scores.LGR}/6</span>`,
+          `<span style="color:${s.scores.ABR<cuts.secMin?'var(--rd)':''}">${s.scores.ABR}/6</span>`,
+          s.scores.total+'/30',s.scores.percentage+'%',s.scores.easyScore+'/15',
+          s.failReason||'Below cutoff',pH('FAIL')],
+        _cl:()=>{ADM.selC=ADM.selC===s.candidateId?null:s.candidateId;buildAdmContent();}
+      })),1020);
+    fs.appendChild(tbl);
+    w.appendChild(fs);
+  }
+
+  // Candidate detail panel (answer review)
+  if(ADM.selC){
+    const sub=subs.find(s=>s.candidateId===ADM.selC);
+    if(sub){
+      const det=dv('sfc');
+      det.appendChild(dv('sfct',`Answer Review — ${sub.name} (${sub.candidateId}) | Score: ${sub.scores.total}/30 | Time: ${sub.timeTaken} | Violations: ${sub.proctorViolations||0}`));
+      const ag=dv('arg');
+      QS.forEach((q,i)=>{
+        const gv=sub.answers[i];
+        const cls=gv===q.a?'arc arok':gv?'arc arbad':'arc arbl';
+        ag.innerHTML+=`<div class="${cls}"><span style="font-size:9px;display:block;opacity:.7">Q${i+1} [${q.sec}]</span>${gv||'—'}</div>`;
+      });
+      det.appendChild(ag);
+      det.appendChild(dv('','<span style="font-size:10px;color:var(--ft)">🟢 Correct &nbsp; 🔴 Wrong &nbsp; ⬜ Not Attempted</span>'));
+      if(sub.proctorViolations>0){
+        det.appendChild(dv('warnmsg',`⚠ This candidate triggered ${sub.proctorViolations} proctoring violation(s).${sub.terminatedByProctor?' Test was auto-terminated.':''}`));
+      }
+      if(sub.status==='PASS'){
+        const ab=mk('button','btn bgr bsm',`🎤 Shortlist ${sub.name} for GD`);
+        ab.style.marginTop='8px';
+        ab.onclick=()=>advToGD(sub.candidateId,sub.name);
+        det.appendChild(ab);
+      }
+      w.appendChild(det);
+    }
+  }
+  return w;
+}
+
+function advToGD(cid,name){
+  ADM.tab='gd';ADM.gdF.cid=cid;
+  buildAdmTabs();buildAdmContent();
+  toast(`${name} loaded in GD Evaluation tab — enter scores now.`,'gr');
+}
+
+function advToF2F(cid,name){
+  ADM.tab='f2f';ADM.f2fF.cid=cid;
+  buildAdmTabs();buildAdmContent();
+  toast(`${name} loaded in F2F Interview tab — enter scores now.`,'gr');
+}
+
+// ── GD EVALUATION ──
+function tabGD(){
+  const w=dv('');
+  const subs=DB.subs(),cuts=DB.cuts(),gds=DB.gd();
+  const passed=subs.filter(s=>s.scores.percentage>=cuts.aptPct);
+  w.appendChild(dv('slabel',`Group Discussion Evaluation — ${passed.length} Shortlisted from Aptitude`));
+  if(!passed.length){w.appendChild(dv('empty','<div class="ei">🎤</div><h4>No Shortlisted Candidates</h4><p>No candidates have passed Aptitude yet.</p>'));return w;}
+
+  // GD Scoring Parameters
+  const paramInfo=[
+    {p:'Communication Clarity',desc:'Fluency, sentence structure, vocabulary (1=Incoherent, 10=Clear & impactful)'},
+    {p:'Collaborative Response',desc:'Builds on others\' points (1=Ignores others, 10=Actively builds on ideas)'},
+    {p:'Constructive Challenge',desc:'Polite disagreement (1=Aggressive/avoids, 10=Logical respectful disagreement)'},
+    {p:'Reasoning Quality',desc:'Evidence-backed arguments (1=No logic, 10=Structured with facts)'},
+    {p:'Leadership & Initiative',desc:'Starts/summarises discussion (1=Passive, 10=Sets tone & summarises)'},
+    {p:'Composure Under Pressure',desc:'Handles opposition calmly (1=Visibly agitated, 10=Confident throughout)'},
+    {p:'Content Knowledge',desc:'Topic awareness (1=Wrong/no info, 10=Deep relevant knowledge)'},
+    {p:'Listening Skills',desc:'Responds to what others said (1=Interrupts, 10=Active listener)'}
+  ];
+
+  const form=dv('sfc');form.appendChild(dv('sfct','Enter GD Evaluation Scores (8 Parameters × 10 = 80 Total)'));
+  const sf=dv('field');sf.style.maxWidth='320px';sf.innerHTML='<label>Select Candidate</label>';
+  const sel=document.createElement('select');
+  sel.appendChild(Object.assign(document.createElement('option'),{value:'',textContent:'— Choose candidate —'}));
+  passed.forEach(s=>{
+    const o=document.createElement('option');
+    o.value=s.candidateId;
+    o.textContent=`${s.name} (${s.candidateId}) — ${s.college}`;
+    if(ADM.gdF.cid===s.candidateId) o.selected=true;
+    sel.appendChild(o);
+  });
+  sel.onchange=e=>{
+    const c=e.target.value,ex=gds[c];
+    ADM.gdF={cid:c,sc:ex?{...ex.scores}:Object.fromEntries(GDP.map(p=>[p,5])),rem:ex?.remarks||''};
+    buildAdmContent();
+  };
+  sf.appendChild(sel);form.appendChild(sf);
+
+  if(ADM.gdF.cid){
+    const tot=Object.values(ADM.gdF.sc).reduce((a,b)=>a+b,0);
+    const pct=(tot/80*100).toFixed(1);
+    const th=dv('shero');
+    th.id='gdh';
+    th.innerHTML=`<div class="shv">${tot}/80 · ${pct}%</div><div class="shs">${parseFloat(pct)>=cuts.gdPct?'✓ SHORTLISTED FOR F2F':'✗ ELIMINATED'} (Cutoff: ${cuts.gdPct}%)</div>`;
+    form.appendChild(th);
+    const sg=dv('sgrid');
+    GDP.forEach(p=>{
+      const si=dv('si');
+      const info=paramInfo.find(x=>x.p===p);
+      si.innerHTML=`<label title="${info?info.desc:''}">${p}</label><div class="snum" id="gn-${p.replace(/\W+/g,'_')}">${ADM.gdF.sc[p]}</div>`;
+      const sl=document.createElement('input');sl.type='range';sl.min=1;sl.max=10;sl.value=ADM.gdF.sc[p];
+      sl.oninput=e=>{
+        ADM.gdF.sc[p]=parseInt(e.target.value);
+        si.querySelector('.snum').textContent=e.target.value;
+        const t2=Object.values(ADM.gdF.sc).reduce((a,b)=>a+b,0);
+        const p2=(t2/80*100).toFixed(1);
+        const hh=document.getElementById('gdh');
+        if(hh) hh.innerHTML=`<div class="shv">${t2}/80 · ${p2}%</div><div class="shs">${parseFloat(p2)>=cuts.gdPct?'✓ SHORTLISTED FOR F2F':'✗ ELIMINATED'} (Cutoff: ${cuts.gdPct}%)</div>`;
+      };
+      si.appendChild(sl);sg.appendChild(si);
+    });
+    form.appendChild(sg);
+    const rf=dv('field');rf.innerHTML='<label>Evaluator Remarks (document specific observations)</label>';
+    const ta=document.createElement('textarea');ta.style.cssText='resize:vertical;min-height:60px;font-size:13px';
+    ta.placeholder='Describe this candidate\'s specific GD performance, strengths, and areas for concern...';
+    ta.value=ADM.gdF.rem;ta.oninput=e=>ADM.gdF.rem=e.target.value;
+    rf.appendChild(ta);form.appendChild(rf);
+    const sb=mk('button','btn bgr','✓ Save GD Evaluation');
+    sb.onclick=()=>{
+      DB.saveGD(ADM.gdF.cid,{scores:{...ADM.gdF.sc},remarks:ADM.gdF.rem,evaluator:ADM.user.name,savedAt:new Date().toISOString()});
+      toast('GD scores saved','gr');buildAdmContent();
+    };
+    form.appendChild(sb);
+  }
+  w.appendChild(form);
+
+  // Show GD rubric info
+  const rub=dv('sfc');rub.appendChild(dv('sfct','GD Scoring Reference — Parameter Guide'));
+  const rubTbl=mkTbl('2fr 3fr 1.5fr 1.5fr',['Parameter','What to Observe','Score 1–3','Score 7–10'],
+    paramInfo.map(x=>[x.p,x.desc,'Poor/Weak','Strong/Excellent']));
+  rub.appendChild(rubTbl);w.appendChild(rub);
+
+  // GD results
+  const gdk=Object.keys(gds);
+  if(gdk.length){
+    w.appendChild(dv('slabel','GD Results — Shortlisted Candidates'));
+    const gdPassed=gdk.filter(cid=>{const g=gds[cid];return Object.values(g.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.gdPct;});
+    const gdFailed=gdk.filter(cid=>{const g=gds[cid];return Object.values(g.scores).reduce((a,b)=>a+b,0)/80*100<cuts.gdPct;});
+    if(gdPassed.length){
+      const ps=dv('sfc');ps.appendChild(dv('sfct',`✅ GD CLEARED — ${gdPassed.length} Candidate(s) Eligible for F2F`));
+      ps.appendChild(dv('infomsg mb12','Click <strong>Advance to F2F</strong> to manually move a candidate to the F2F interview stage.'));
+      const tbl=mkTbl('1.2fr 2fr 1fr 1fr 1.5fr 1.3fr 1.4fr',['ID','Name','GD Total','GD %','Evaluator','Remarks','Action'],
+        gdPassed.map(cid=>{
+          const g=gds[cid],sub=subs.find(s=>s.candidateId===cid);
+          const tot=Object.values(g.scores).reduce((a,b)=>a+b,0),pct=(tot/80*100).toFixed(1);
+          return[cid,sub?.name||'—',tot+'/80',pct+'%',g.evaluator||'—',
+            (g.remarks||'—').substring(0,30)+(g.remarks?.length>30?'…':''),
+            `<button class="btn bgr bsm" onclick="advToF2F('${cid}','${(sub?.name||'').replace(/'/g,"\\'")}')">🧑‍💼 Advance F2F</button>`];
+        }));
+      ps.appendChild(tbl);w.appendChild(ps);
+    }
+    if(gdFailed.length){
+      const fs=dv('sfc');fs.appendChild(dv('sfct',`❌ GD ELIMINATED — ${gdFailed.length} Candidate(s)`));
+      const tbl=mkTbl('1.2fr 2fr 1fr 1fr 1.5fr 1.3fr 1.2fr',['ID','Name','GD Total','GD %','Evaluator','Remarks','Status'],
+        gdFailed.map(cid=>{
+          const g=gds[cid],sub=subs.find(s=>s.candidateId===cid);
+          const tot=Object.values(g.scores).reduce((a,b)=>a+b,0),pct=(tot/80*100).toFixed(1);
+          return[cid,sub?.name||'—',tot+'/80',pct+'%',g.evaluator||'—',
+            (g.remarks||'—').substring(0,30)+(g.remarks?.length>30?'…':''),pH('ELIMINATED')];
+        }));
+      fs.appendChild(tbl);w.appendChild(fs);
+    }
+  }
+  return w;
+}
+
+// ── F2F INTERVIEW ──
+function tabF2F(){
+  const w=dv('');
+  const subs=DB.subs(),cuts=DB.cuts(),gds=DB.gd(),f2fs=DB.f2f();
+  const gdP=subs.filter(s=>{
+    const g=gds[s.candidateId];
+    return g&&Object.values(g.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.gdPct;
+  });
+  w.appendChild(dv('slabel',`F2F Technical Interview — ${gdP.length} Candidate(s) from GD`));
+  if(!gdP.length){w.appendChild(dv('empty','<div class="ei">🧑‍💼</div><h4>No Candidates</h4><p>No candidates have cleared GD round yet.</p>'));return w;}
+
+  const paramInfo2=[
+    {p:'Technical Knowledge',desc:'Core subject command — ask concept questions specific to their branch/role'},
+    {p:'Problem Solving',desc:'Novel problem approach — give an unseen problem, observe their structure'},
+    {p:'Code Fluency',desc:'Syntax accuracy & logic — ask to write a small function or trace code'},
+    {p:'Communication',desc:'Can they explain technical ideas simply to a non-technical audience?'},
+    {p:'Resoluteness',desc:'Do they try multiple approaches when stuck, or give up immediately?'},
+    {p:'Coachability',desc:'Do they incorporate your feedback quickly and improve during the session?'},
+    {p:'Project Logic',desc:'Can they explain their own projects: Why-What-How + trade-offs made?'},
+    {p:'Domain Fit',desc:'Awareness of Globe Creater\'s focus areas: EdTech, GovTech, Data Science, Full Stack'}
+  ];
+
+  const form=dv('sfc');form.appendChild(dv('sfct','Enter F2F Technical Interview Scores (8 Parameters × 10 = 80 Total)'));
+  const sf=dv('field');sf.style.maxWidth='320px';sf.innerHTML='<label>Select Candidate</label>';
+  const sel=document.createElement('select');
+  sel.appendChild(Object.assign(document.createElement('option'),{value:'',textContent:'— Choose candidate —'}));
+  gdP.forEach(s=>{
+    const o=document.createElement('option');o.value=s.candidateId;
+    o.textContent=`${s.name} (${s.candidateId}) — ${s.college}`;
+    if(ADM.f2fF.cid===s.candidateId) o.selected=true;
+    sel.appendChild(o);
+  });
+  sel.onchange=e=>{
+    const c=e.target.value,ex=f2fs[c];
+    ADM.f2fF={cid:c,sc:ex?{...ex.scores}:Object.fromEntries(F2FP.map(p=>[p,5])),rem:ex?.remarks||''};
+    buildAdmContent();
+  };
+  sf.appendChild(sel);form.appendChild(sf);
+
+  if(ADM.f2fF.cid){
+    const tot=Object.values(ADM.f2fF.sc).reduce((a,b)=>a+b,0);
+    const pct=(tot/80*100).toFixed(1);
+    const th=dv('shero');th.id='f2fh';
+    th.innerHTML=`<div class="shv">${tot}/80 · ${pct}%</div><div class="shs">${parseFloat(pct)>=cuts.f2fPct?'✓ SELECTED — INTERN OFFER':'✗ NOT SELECTED'} (Cutoff: ${cuts.f2fPct}%)</div>`;
+    form.appendChild(th);
+    const sg=dv('sgrid');
+    F2FP.forEach(p=>{
+      const si=dv('si');
+      const info=paramInfo2.find(x=>x.p===p);
+      si.innerHTML=`<label title="${info?info.desc:''}">${p}</label><div class="snum" id="fn-${p.replace(/\W+/g,'_')}">${ADM.f2fF.sc[p]}</div>`;
+      const sl=document.createElement('input');sl.type='range';sl.min=1;sl.max=10;sl.value=ADM.f2fF.sc[p];
+      sl.oninput=e=>{
+        ADM.f2fF.sc[p]=parseInt(e.target.value);
+        si.querySelector('.snum').textContent=e.target.value;
+        const t2=Object.values(ADM.f2fF.sc).reduce((a,b)=>a+b,0);
+        const p2=(t2/80*100).toFixed(1);
+        const hh=document.getElementById('f2fh');
+        if(hh) hh.innerHTML=`<div class="shv">${t2}/80 · ${p2}%</div><div class="shs">${parseFloat(p2)>=cuts.f2fPct?'✓ SELECTED — INTERN OFFER':'✗ NOT SELECTED'} (Cutoff: ${cuts.f2fPct}%)</div>`;
+      };
+      si.appendChild(sl);sg.appendChild(si);
+    });
+    form.appendChild(sg);
+    const rf=dv('field');rf.innerHTML='<label>Expert Remarks (REQUIRED — document evidence for each score)</label>';
+    const ta=document.createElement('textarea');ta.style.cssText='resize:vertical;min-height:70px;font-size:13px';
+    ta.placeholder='Document specific problems discussed, approach shown, concepts explained correctly/incorrectly, evidence for each parameter score...';
+    ta.value=ADM.f2fF.rem;ta.oninput=e=>ADM.f2fF.rem=e.target.value;
+    rf.appendChild(ta);form.appendChild(rf);
+    const sb=mk('button','btn bgr','✓ Save F2F Evaluation');
+    sb.onclick=()=>{
+      if(!ADM.f2fF.rem.trim()){toast('Expert remarks are required before saving.','am');return;}
+      DB.saveF2F(ADM.f2fF.cid,{scores:{...ADM.f2fF.sc},remarks:ADM.f2fF.rem,expert:ADM.user.name,savedAt:new Date().toISOString()});
+      toast('F2F scores saved','gr');buildAdmContent();
+    };
+    form.appendChild(sb);
+  }
+  w.appendChild(form);
+
+  // F2F Rubric
+  const rub=dv('sfc');rub.appendChild(dv('sfct','F2F Interview Rubric — Scoring Guide'));
+  const rubTbl=mkTbl('2fr 3fr 1.5fr 1.5fr',['Parameter','What Evidence to Document','Score 1–3','Score 7–10'],
+    paramInfo2.map(x=>[x.p,x.desc,'Weak/None','Strong/Excellent']));
+  rub.appendChild(rubTbl);w.appendChild(rub);
+
+  // F2F results
+  const f2fk=Object.keys(f2fs);
+  if(f2fk.length){
+    w.appendChild(dv('slabel','F2F Results'));
+    const tbl=mkTbl('1.2fr 2fr 1fr 1fr 1.5fr 1.3fr',['ID','Name','F2F Total','F2F %','Expert','Status'],
+      f2fk.map(cid=>{
+        const f=f2fs[cid],sub=subs.find(s=>s.candidateId===cid);
+        const tot=Object.values(f.scores).reduce((a,b)=>a+b,0),pct=(tot/80*100).toFixed(1);
+        return[cid,sub?.name||'—',tot+'/80',pct+'%',f.expert||'—',pH(parseFloat(pct)>=cuts.f2fPct?'SELECTED':'NOT SELECTED')];
+      }));
+    w.appendChild(tbl);
+  }
+  return w;
+}
+
+// ── PIPELINE ──
+function tabPipe(){
+  const w=dv('');
+  const subs=DB.subs(),cuts=DB.cuts(),gds=DB.gd(),f2fs=DB.f2f();
+  w.appendChild(dv('slabel','Full Hiring Pipeline — All 3 Stages'));
+  if(!subs.length){w.appendChild(dv('empty','<div class="ei">🔍</div><h4>No Data</h4><p>No submissions yet.</p>'));return w;}
+  const tbl=mkTbl('1.1fr 1.7fr 1.5fr 1fr 1fr 1fr 1fr .6fr 1.5fr',
+    ['ID','Name','College','Apt %','Stage 1','GD %','F2F %','Flags','Final Outcome'],
+    subs.map(s=>{
+      const g=gds[s.candidateId],f=f2fs[s.candidateId];
+      const gt=g?Object.values(g.scores).reduce((a,b)=>a+b,0):null;
+      const gp=gt!=null?(gt/80*100).toFixed(1):null;
+      const ft=f?Object.values(f.scores).reduce((a,b)=>a+b,0):null;
+      const fp=ft!=null?(ft/80*100).toFixed(1):null;
+      let out='PENDING';
+      if(s.scores.percentage<cuts.aptPct) out='APT FAIL';
+      else if(gp!==null&&parseFloat(gp)<cuts.gdPct) out='GD FAIL';
+      else if(fp!==null) out=parseFloat(fp)>=cuts.f2fPct?'INTERN OFFER':'NOT SELECTED';
+      else if(gp!==null) out='GD PASS';
+      else out='APT PASS';
+      return[s.candidateId,s.name,s.college,s.scores.percentage+'%',
+        pH(s.scores.percentage>=cuts.aptPct?'PASS':'FAIL'),
+        gp!=null?gp+'%':'—',fp!=null?fp+'%':'—',
+        s.proctorViolations||0,pH(out)];
+    }),780);
+  w.appendChild(tbl);
+  return w;
+}
+
+// ── ANALYTICS ──
+function tabAna(){
+  const w=dv('');
+  const subs=DB.subs(),cuts=DB.cuts(),gds=DB.gd(),f2fs=DB.f2f();
+  w.appendChild(dv('slabel','Drive Analytics & Insights — Real-Time Statistics'));
+  if(!subs.length){w.appendChild(dv('empty','<div class="ei">📈</div><h4>No Data</h4><p>No submissions to analyse.</p>'));return w;}
+  const passed=subs.filter(s=>s.scores.percentage>=cuts.aptPct).length;
+  const gdK=Object.keys(gds),f2fK=Object.keys(f2fs);
+  const gdP=Object.values(gds).filter(g=>Object.values(g.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.gdPct).length;
+  const sel=Object.values(f2fs).filter(f=>Object.values(f.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.f2fPct).length;
+
+  // KPI row
+  const kpiRow=dv('mrow');
+  [
+    {v:subs.length,l:'Total Appeared',c:''},
+    {v:passed,l:'Apt. Passed',c:'mc-gr'},
+    {v:subs.length-passed,l:'Apt. Failed',c:'mc-rd'},
+    {v:gdK.length,l:'GD Evaluated',c:''},
+    {v:gdP,l:'GD Shortlisted',c:'mc-gr'},
+    {v:f2fK.length,l:'F2F Done',c:''},
+    {v:sel,l:'Final Selected',c:sel?'mc-gr':''},
+    {v:subs.filter(s=>s.proctorViolations>0).length,l:'Proctor Flags',c:'mc-rd'}
+  ].forEach(({v,l,c})=>{
+    const m=dv('mc '+c);m.innerHTML=`<div class="mcv">${v}</div><div class="mcl">${l}</div>`;kpiRow.appendChild(m);
+  });
+  w.appendChild(kpiRow);
+
+  // Hiring funnel
+  const ac0=dv('anc');ac0.appendChild(dv('anct','🔽 Hiring Funnel — Stage-wise Drop-off'));
+  const fn=dv('funnel');
+  [{v:subs.length,l:'Appeared',p:'100%',bg:'linear-gradient(135deg,#1A3A6E,#2757A8)'},
+   {v:passed,l:'Apt. Passed',p:subs.length?((passed/subs.length)*100).toFixed(0)+'%':'—',bg:'linear-gradient(135deg,#14532D,#16A34A)'},
+   {v:gdP,l:'GD Shortlisted',p:passed?((gdP/passed)*100).toFixed(0)+'%':'—',bg:'linear-gradient(135deg,#92400E,#D97706)'},
+   {v:sel,l:'Final Selected',p:subs.length?((sel/subs.length)*100).toFixed(1)+'% overall yield':'—',bg:'linear-gradient(135deg,#5B21B6,#7C3AED)'}
+  ].forEach(({v,l,p,bg})=>{
+    const f=dv('fn');f.style.background=bg;
+    f.innerHTML=`<div class="fnv">${v}</div><div class="fnl">${l}</div><div class="fnp">${p}</div>`;
+    fn.appendChild(f);
+  });
+  ac0.appendChild(fn);
+  // Funnel insights
+  const fi=dv('');fi.style.cssText='font-size:11px;color:var(--mu);padding:8px 12px;background:var(--sf2);border-radius:var(--r);border:1px solid var(--br);margin-top:6px;line-height:1.8';
+  fi.innerHTML=`📊 <strong>Drive Conversion Rate:</strong> ${subs.length>0?((sel/subs.length)*100).toFixed(1):0}% | 
+  📉 <strong>Aptitude Elimination:</strong> ${subs.length-passed} candidates | 
+  ⏳ <strong>Pending GD:</strong> ${Math.max(0,passed-gdK.length)} | 
+  ⏳ <strong>Pending F2F:</strong> ${Math.max(0,gdP-f2fK.length)}`;
+  ac0.appendChild(fi);
+  w.appendChild(ac0);
+
+  // Score distribution
+  const ac1=dv('anc');ac1.appendChild(dv('anct','📊 Aptitude Score Distribution (Percentage Bands)'));
+  const ranges=[[0,10],[10,20],[20,30],[30,40],[40,50],[50,60],[60,70],[70,80],[80,90],[90,101]];
+  const mx=Math.max(...ranges.map(([a,b])=>subs.filter(s=>s.scores.percentage>=a&&s.scores.percentage<b).length),1);
+  ranges.forEach(([a,b])=>{
+    const cnt=subs.filter(s=>s.scores.percentage>=a&&s.scores.percentage<b).length;
+    const aboveCut=a>=cuts.aptPct;
+    const row=dv('bcrow');
+    row.innerHTML=`<div class="bclbl" style="${aboveCut?'color:var(--gr);font-weight:600':''}">${a}–${b===101?100:b}%${aboveCut?' ✓':''}</div>
+      <div class="bcwrap"><div class="bcfill" style="width:${cnt/mx*100}%;background:${aboveCut?'var(--gr)':'var(--rd)'}"><span class="bcval" style="display:${cnt?'flex':'none'};align-items:center;padding-left:7px;font-size:10px">${cnt}</span></div></div>
+      <div class="bcnum">${cnt}</div>`;
+    ac1.appendChild(row);
+  });
+  const avgPct=subs.reduce((a,s)=>a+s.scores.percentage,0)/subs.length;
+  const medPct=subs.slice().sort((a,b)=>a.scores.percentage-b.scores.percentage)[Math.floor(subs.length/2)]?.scores.percentage||0;
+  const maxS=Math.max(...subs.map(s=>s.scores.percentage));
+  const minS=Math.min(...subs.map(s=>s.scores.percentage));
+  ac1.appendChild(dv('',`<div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:11px;color:var(--mu)">
+    <span>📐 Mean: <strong style="color:var(--ny)">${avgPct.toFixed(1)}%</strong></span>
+    <span>📏 Median: <strong style="color:var(--ny)">${medPct.toFixed(1)}%</strong></span>
+    <span>🔝 Highest: <strong style="color:var(--gr)">${maxS}%</strong></span>
+    <span>🔻 Lowest: <strong style="color:var(--rd)">${minS}%</strong></span>
+    <span>✅ Cutoff: <strong style="color:var(--ny)">${cuts.aptPct}%</strong></span>
+  </div>`));
+  w.appendChild(ac1);
+
+  // Easy vs Hard analysis
+  const ac1b=dv('anc');ac1b.appendChild(dv('anct','🎯 Easy vs Hard Question Analysis'));
+  const eAvg=subs.reduce((a,s)=>a+s.scores.easyScore,0)/subs.length;
+  const hAvg=subs.reduce((a,s)=>a+s.scores.hardScore,0)/subs.length;
+  const eMax=Math.max(...subs.map(s=>s.scores.easyScore));
+  const hMax=Math.max(...subs.map(s=>s.scores.hardScore));
+  ac1b.innerHTML+=`<div class="g2" style="gap:12px">
+    <div style="background:var(--grbg);border:1px solid var(--grb);border-radius:var(--rl);padding:14px;text-align:center">
+      <div style="font-size:26px;font-weight:900;color:var(--gr)">${eAvg.toFixed(1)}/15</div>
+      <div style="font-size:11px;color:var(--gr);margin-top:4px;text-transform:uppercase;font-weight:700">Easy Avg</div>
+      <div style="font-size:10px;color:var(--mu);margin-top:4px">${(eAvg/15*100).toFixed(0)}% accuracy | Top: ${eMax}/15</div>
+    </div>
+    <div style="background:var(--rdbg);border:1px solid var(--rdb);border-radius:var(--rl);padding:14px;text-align:center">
+      <div style="font-size:26px;font-weight:900;color:var(--rd)">${hAvg.toFixed(1)}/15</div>
+      <div style="font-size:11px;color:var(--rd);margin-top:4px;text-transform:uppercase;font-weight:700">Hard Avg</div>
+      <div style="font-size:10px;color:var(--mu);margin-top:4px">${(hAvg/15*100).toFixed(0)}% accuracy | Top: ${hMax}/15</div>
+    </div>
+  </div>
+  <div style="font-size:11px;color:var(--mu);margin-top:10px;padding:8px;background:var(--sf2);border-radius:var(--r);border:1px solid var(--br)">
+    💡 <strong>Insight:</strong> ${hAvg/15*100<40?'Hard questions are filtering candidates effectively. Consider if cutoff needs adjustment.':hAvg/15*100>65?'Hard question success rate is high — consider increasing difficulty in the next drive.':'Hard vs Easy balance is optimal for differentiation.'}
+  </div>`;
+  w.appendChild(ac1b);
+
+  // Section performance
+  const ac2=dv('anc');ac2.appendChild(dv('anct','📚 Section-wise Performance (Average Scores)'));
+  SECS.forEach(sec=>{
+    const avg=subs.reduce((a,s)=>a+(s.scores[sec]||0),0)/subs.length;
+    const belowMin=subs.filter(s=>s.scores[sec]<cuts.secMin).length;
+    const row=dv('bcrow');
+    row.innerHTML=`<div class="bclbl">${SM[sec].name}</div>
+      <div class="bcwrap"><div class="bcfill" style="width:${avg/6*100}%;background:${SM[sec].color}"><span class="bcval">${avg.toFixed(1)}</span></div></div>
+      <div class="bcnum">${(avg/6*100).toFixed(0)}%</div>
+      <span style="font-size:10px;color:var(--rd);min-width:70px;text-align:right">${belowMin?belowMin+' below min':''}</span>`;
+    ac2.appendChild(row);
+  });
+  w.appendChild(ac2);
+
+  // College breakdown (if data available)
+  const colleges=[...new Set(subs.map(s=>s.college))];
+  if(colleges.length>1){
+    const ac4=dv('anc');ac4.appendChild(dv('anct','🏫 College-wise Performance'));
+    const colData=colleges.map(col=>{
+      const cs=subs.filter(s=>s.college===col);
+      const avg=cs.reduce((a,s)=>a+s.scores.percentage,0)/cs.length;
+      const p=cs.filter(s=>s.scores.percentage>=cuts.aptPct).length;
+      return{col,cnt:cs.length,avg,p};
+    }).sort((a,b)=>b.avg-a.avg);
+    const cmx=Math.max(...colData.map(c=>c.cnt),1);
+    colData.slice(0,8).forEach(({col,cnt,avg,p})=>{
+      const row=dv('bcrow');
+      row.innerHTML=`<div class="bclbl" style="width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${col}">${col}</div>
+        <div class="bcwrap"><div class="bcfill" style="width:${cnt/cmx*100}%;background:var(--ny)"><span class="bcval">${cnt}</span></div></div>
+        <div style="font-size:11px;min-width:90px;text-align:right">Avg: <strong>${avg.toFixed(1)}%</strong> | ✅ ${p}</div>`;
+      ac4.appendChild(row);
+    });
+    w.appendChild(ac4);
+  }
+
+  // Time analysis
+  const ac5=dv('anc');ac5.appendChild(dv('anct','⏱ Test Time Analysis'));
+  const parseTime=t=>{if(!t)return 0;const[m,s]=t.split(':').map(Number);return m*60+s;};
+  const times=subs.map(s=>parseTime(s.timeTaken)).filter(Boolean);
+  if(times.length){
+    const avgTime=times.reduce((a,b)=>a+b,0)/times.length;
+    const fastSubs=subs.filter(s=>parseTime(s.timeTaken)<600).length; // <10 min
+    const slowSubs=subs.filter(s=>parseTime(s.timeTaken)>1500).length; // >25 min
+    ac5.innerHTML+=`<div class="g4">
+      <div style="background:var(--sf2);border:1px solid var(--br);border-radius:var(--rl);padding:12px;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:var(--ny)">${Math.floor(avgTime/60)}:${String(Math.round(avgTime%60)).padStart(2,'0')}</div>
+        <div style="font-size:10px;color:var(--mu);margin-top:3px;text-transform:uppercase">Avg Time Taken</div>
+      </div>
+      <div style="background:var(--sf2);border:1px solid var(--br);border-radius:var(--rl);padding:12px;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:var(--ny)">${Math.floor(Math.min(...times)/60)}:${String(Math.min(...times)%60).padStart(2,'0')}</div>
+        <div style="font-size:10px;color:var(--mu);margin-top:3px;text-transform:uppercase">Fastest Submission</div>
+      </div>
+      <div style="background:var(--ambg);border:1px solid var(--amb);border-radius:var(--rl);padding:12px;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:var(--am)">${fastSubs}</div>
+        <div style="font-size:10px;color:var(--am);margin-top:3px;text-transform:uppercase">Submitted < 10 min</div>
+      </div>
+      <div style="background:var(--grbg);border:1px solid var(--grb);border-radius:var(--rl);padding:12px;text-align:center">
+        <div style="font-size:22px;font-weight:900;color:var(--gr)">${subs.length-slowSubs-fastSubs}</div>
+        <div style="font-size:10px;color:var(--gr);margin-top:3px;text-transform:uppercase">10–25 min range</div>
+      </div>
+    </div>`;
+  }
+  w.appendChild(ac5);
+
+  // Proctoring report
+  const flags=subs.filter(s=>s.proctorViolations>0).length;
+  const term=subs.filter(s=>s.terminatedByProctor).length;
+  const ac3=dv('anc');ac3.appendChild(dv('anct','🔒 Proctoring Integrity Report'));
+  ac3.innerHTML+=`<div class="g4">
+    <div style="background:${flags?'var(--rdbg)':'var(--grbg)'};border:1px solid ${flags?'var(--rdb)':'var(--grb)'};border-radius:var(--rl);padding:14px;text-align:center">
+      <div style="font-size:28px;font-weight:900;color:${flags?'var(--rd)':'var(--gr)'}">${flags}</div>
+      <div style="font-size:10px;color:var(--mu);text-transform:uppercase;margin-top:4px">Candidates Flagged</div>
+    </div>
+    <div style="background:var(--ambg);border:1px solid var(--amb);border-radius:var(--rl);padding:14px;text-align:center">
+      <div style="font-size:28px;font-weight:900;color:var(--am)">${subs.reduce((a,s)=>a+(s.proctorViolations||0),0)}</div>
+      <div style="font-size:10px;color:var(--mu);text-transform:uppercase;margin-top:4px">Total Tab Switches</div>
+    </div>
+    <div style="background:${term?'var(--rdbg)':'var(--sf2)'};border:1px solid ${term?'var(--rdb)':'var(--br)'};border-radius:var(--rl);padding:14px;text-align:center">
+      <div style="font-size:28px;font-weight:900;color:${term?'var(--rd)':'var(--mu)'}">${term}</div>
+      <div style="font-size:10px;color:var(--mu);text-transform:uppercase;margin-top:4px">Auto-Terminated</div>
+    </div>
+    <div style="background:var(--grbg);border:1px solid var(--grb);border-radius:var(--rl);padding:14px;text-align:center">
+      <div style="font-size:28px;font-weight:900;color:var(--gr)">${subs.filter(s=>!s.proctorViolations).length}</div>
+      <div style="font-size:10px;color:var(--mu);text-transform:uppercase;margin-top:4px">Clean Submissions</div>
+    </div>
+  </div>`;
+  if(flags){
+    const fl=subs.filter(s=>s.proctorViolations>0);
+    const ft=mkTbl('1.2fr 2fr 1.5fr 1fr 1fr 1.2fr',['ID','Name','College','Violations','Auto-Term','Apt Status'],
+      fl.sort((a,b)=>b.proctorViolations-a.proctorViolations).map(s=>[
+        s.candidateId,s.name,s.college,s.proctorViolations,
+        s.terminatedByProctor?'⚠ YES':'No',pH(s.status)
+      ]));
+    ac3.appendChild(dv('slabel','Flagged Candidates List'));
+    ac3.appendChild(ft);
+  }
+  w.appendChild(ac3);
+
+  // Stage-wise decision rubrics for Super Admin
+  if(ADM.user.role==='super'){
+    const acR=dv('anc');acR.appendChild(dv('anct','⚖️ Stage-wise Selection Decision Framework'));
+    acR.innerHTML+=`
+    <div style="font-size:12px;color:var(--mu);margin-bottom:12px">Industry-standard parameters used by Globe Creater. These criteria supplement the numeric scores to ensure holistic evaluation.</div>
+    <div class="g3" style="gap:10px">
+      <div style="border:1.5px solid var(--nyl);border-radius:var(--rl);overflow:hidden">
+        <div style="background:var(--ny);padding:10px 14px;font-size:11px;font-weight:700;color:#fff;letter-spacing:.5px;text-transform:uppercase">📋 Stage 1: Aptitude</div>
+        <div style="padding:12px;font-size:11px;color:var(--tx2);line-height:1.9">
+          <div style="margin-bottom:5px"><span style="color:var(--gr);font-weight:700">✅ SELECT:</span> ≥${cuts.aptPct}% overall + ≥${cuts.secMin}/6 in every section</div>
+          <div style="margin-bottom:5px"><span style="color:var(--am);font-weight:700">⚠ REVIEW:</span> Score within 5% of cutoff — check hard question performance</div>
+          <div style="margin-bottom:5px"><span style="color:var(--rd);font-weight:700">❌ REJECT:</span> Below cutoff OR zero score in any section</div>
+          <div style="border-top:1px solid var(--br);padding-top:8px;margin-top:8px;color:var(--mu)">⚠ Auto-flag: ≥2 proctor violations → manual admin review before advancing</div>
+        </div>
+      </div>
+      <div style="border:1.5px solid var(--am);border-radius:var(--rl);overflow:hidden">
+        <div style="background:var(--am);padding:10px 14px;font-size:11px;font-weight:700;color:#fff;letter-spacing:.5px;text-transform:uppercase">🎤 Stage 2: GD</div>
+        <div style="padding:12px;font-size:11px;color:var(--tx2);line-height:1.9">
+          <div style="margin-bottom:5px"><span style="color:var(--gr);font-weight:700">✅ SHORTLIST:</span> ≥${cuts.gdPct}% GD score + evaluator remarks filled</div>
+          <div style="margin-bottom:5px"><span style="color:var(--am);font-weight:700">⚠ REVIEW:</span> Score 55–${cuts.gdPct}% — Communication Clarity ≥7 is a key override</div>
+          <div style="margin-bottom:5px"><span style="color:var(--rd);font-weight:700">❌ ELIMINATE:</span> Below ${cuts.gdPct}% OR Leadership & Composure both ≤3</div>
+          <div style="border-top:1px solid var(--br);padding-top:8px;margin-top:8px;color:var(--mu)">Key parameters: Communication Clarity + Reasoning Quality carry 2× importance</div>
+        </div>
+      </div>
+      <div style="border:1.5px solid var(--pu);border-radius:var(--rl);overflow:hidden">
+        <div style="background:var(--pu);padding:10px 14px;font-size:11px;font-weight:700;color:#fff;letter-spacing:.5px;text-transform:uppercase">🧑‍💼 Stage 3: F2F</div>
+        <div style="padding:12px;font-size:11px;color:var(--tx2);line-height:1.9">
+          <div style="margin-bottom:5px"><span style="color:var(--gr);font-weight:700">✅ SELECT:</span> ≥${cuts.f2fPct}% F2F + Domain Fit ≥6/10 + expert remarks filled</div>
+          <div style="margin-bottom:5px"><span style="color:var(--am);font-weight:700">⚠ REVIEW:</span> Good technical but Domain Fit ≤4 — consider alternate role</div>
+          <div style="margin-bottom:5px"><span style="color:var(--rd);font-weight:700">❌ REJECT:</span> Technical Knowledge + Problem Solving both ≤4 = disqualification</div>
+          <div style="border-top:1px solid var(--br);padding-top:8px;margin-top:8px;color:var(--mu)">Expert must document specific questions asked + answers given in remarks</div>
+        </div>
+      </div>
+    </div>`;
+    w.appendChild(acR);
+  }
+  return w;
+}
+
+// ── CANDIDATES ──
+function tabCands(){
+  const w=dv('');
+  const subs=DB.subs();
+  w.appendChild(dv('slabel',`Candidate Register — ${subs.length} Registered Student(s)`));
+  if(!subs.length){w.appendChild(dv('empty','<div class="ei">👥</div><h4>No Candidates</h4><p>No candidates registered yet.</p>'));return w;}
+  const tbl=mkTbl('1.1fr 1.7fr 1.7fr 1.4fr 1.2fr 1fr 1fr .6fr',
+    ['ID','Name','College','Email','Course','Drive Date','Time','Flags'],
+    subs.map(s=>[s.candidateId,s.name,s.college,s.email,s.course||'—',s.driveDate||'—',s.timeTaken,s.proctorViolations||0]));
+  w.appendChild(tbl);
+  if(ADM.user.role==='super'){
+    const b=mk('button','btn brd bsm','⚠ Clear All Test Data');
+    b.style.marginTop='14px';
+    b.onclick=()=>{
+      if(confirm('This will PERMANENTLY delete ALL student submissions, GD scores, and F2F data. This cannot be undone. Are you sure?')){
+        ['gc_subs','gc_gd','gc_f2f'].forEach(k=>localStorage.removeItem(k));
+        toast('All data cleared','rd');buildAdmContent();
+      }
+    };
+    w.appendChild(b);
+  }
+  return w;
+}
+
+// ── CUTOFFS (SUPER ADMIN ONLY) ──
+function tabCuts(){
+  const w=dv('');
+  const cuts=DB.cuts();
+  w.appendChild(dv('slabel','Super Admin — Cutoff & Filter Configuration'));
+  w.appendChild(dv('infomsg mb12','Changes apply instantly across all tabs and pipeline calculations. All existing evaluations are re-checked against new thresholds.'));
+  const c=dv('cc');c.appendChild(dv('cct','Aptitude Stage Cutoffs'));
+  [
+    {k:'aptPct',l:'Aptitude Minimum % Score',min:20,max:85,u:'%',d:'Default: 50%'},
+    {k:'aptHard',l:'Min. Hard Questions Correct',min:0,max:15,u:'',d:'Out of 15 hard Qs'},
+    {k:'secMin',l:'Section Minimum Score',min:0,max:6,u:'',d:'Per section, out of 6'}
+  ].forEach(({k,l,min,max,u,d})=>{
+    const row=dv('crow');
+    const lb=document.createElement('label');lb.textContent=l;lb.style.cssText='font-size:13px;font-weight:600;color:var(--tx);width:210px;flex-shrink:0';row.appendChild(lb);
+    const sl=document.createElement('input');sl.type='range';sl.min=min;sl.max=max;sl.value=cuts[k];sl.style.cssText='flex:1;min-width:100px;accent-color:var(--ny)';
+    const vb=dv('cval',cuts[k]+u);
+    sl.oninput=e=>{cuts[k]=parseInt(e.target.value);vb.textContent=e.target.value+u;DB.saveCuts(cuts);};
+    row.appendChild(sl);row.appendChild(vb);row.appendChild(dv('cdsc',d));c.appendChild(row);
+  });
+  w.appendChild(c);
+  const c2=dv('cc');c2.appendChild(dv('cct','GD & F2F Stage Cutoffs'));
+  [
+    {k:'gdPct',l:'GD Minimum % Score',min:20,max:85,u:'%',d:'Default: 60%'},
+    {k:'f2fPct',l:'F2F Minimum % Score',min:20,max:85,u:'%',d:'Default: 60%'}
+  ].forEach(({k,l,min,max,u,d})=>{
+    const row=dv('crow');
+    const lb=document.createElement('label');lb.textContent=l;lb.style.cssText='font-size:13px;font-weight:600;color:var(--tx);width:210px;flex-shrink:0';row.appendChild(lb);
+    const sl=document.createElement('input');sl.type='range';sl.min=min;sl.max=max;sl.value=cuts[k];sl.style.cssText='flex:1;min-width:100px;accent-color:var(--ny)';
+    const vb=dv('cval',cuts[k]+u);
+    sl.oninput=e=>{cuts[k]=parseInt(e.target.value);vb.textContent=e.target.value+u;DB.saveCuts(cuts);};
+    row.appendChild(sl);row.appendChild(vb);row.appendChild(dv('cdsc',d));c2.appendChild(row);
+  });
+  w.appendChild(c2);
+  // Selection checklist
+  const cl=dv('sfc');cl.appendChild(dv('sfct','Pre-Selection Checklist (Super Admin Must Verify)'));
+  [
+    '✅ Aptitude cutoff applied — all candidates below threshold removed from GD list',
+    '✅ Hard question minimum checked — prevents gaming by answering only easy questions',
+    '✅ Section minimum enforced — no candidate with zero score in any section advances',
+    '✅ Proctor violations reviewed — flagged candidates manually reviewed by admin',
+    '✅ GD evaluator remarks filled — no blank remarks allowed for shortlisted candidates',
+    '✅ F2F expert remarks filled — required field for all F2F scores',
+    '✅ Domain fit score ≥ 6/10 for all selected candidates (role alignment check)',
+    '✅ Duplicate Candidate IDs verified — COUNTIF check in exported Excel',
+    '✅ College CGPA ≥ 6.0 verified from academic documents',
+    '✅ Final offer list reviewed and authorised by Super Admin before HR processing'
+  ].forEach(item=>{
+    const row=dv('');row.style.cssText='padding:8px 12px;border:1px solid var(--br);border-radius:var(--r);margin-bottom:6px;font-size:12px;color:var(--tx2);background:var(--sf2)';
+    row.textContent=item;cl.appendChild(row);
+  });
+  w.appendChild(cl);
+  return w;
+}
+
+// ── OFFER LETTERS ──
+function tabOffers(){
+  const w=dv('');
+  const subs=DB.subs(),cuts=DB.cuts(),f2fs=DB.f2f();
+  const sel=subs.filter(s=>{
+    const f=f2fs[s.candidateId];
+    return f&&Object.values(f.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.f2fPct;
+  });
+  w.appendChild(dv('slabel',`Offer Letters — ${sel.length} Selected Intern(s)`));
+  if(!sel.length){
+    w.appendChild(dv('empty','<div class="ei">📄</div><h4>No Selected Candidates</h4><p>Complete F2F evaluations above the cutoff to generate offer letters.</p>'));
+    return w;
+  }
+  const form=dv('sfc');form.appendChild(dv('sfct','Generate Internship Offer Letter'));
+  form.innerHTML+=`
+  <div class="g2">
+    <div class="field"><label>Select Candidate</label>
+      <select id="oc"><option value="">— Choose —</option>
+        ${sel.map(s=>`<option value="${s.candidateId}">${s.name} (${s.candidateId})</option>`).join('')}
+      </select>
+    </div>
+    <div class="field"><label>Role Offered</label>
+      <select id="or">
+        <option>Data Science Intern</option>
+        <option>Full Stack Development Intern</option>
+        <option>AI/ML Intern</option>
+        <option>Digital Marketing Intern</option>
+        <option>Business Analyst Intern</option>
+        <option>Project Management Intern</option>
+      </select>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="field"><label>Joining Date</label><input type="date" id="ojd" value="${new Date(Date.now()+30*864e5).toISOString().slice(0,10)}"></div>
+    <div class="field"><label>Monthly Stipend (₹)</label><input id="ost" value="8000" placeholder="e.g. 8000"></div>
+    <div class="field"><label>Duration</label>
+      <select id="odur"><option>3 Months</option><option>6 Months</option><option>1 Year</option></select>
+    </div>
+  </div>`;
+  const gb=mk('button','btn bny','Generate Offer Letter');
+  gb.onclick=()=>{
+    const cid=document.getElementById('oc')?.value;
+    if(!cid){toast('Select a candidate first.','am');return;}
+    buildOffer(cid);
+  };
+  form.appendChild(gb);
+  w.appendChild(form);
+  return w;
+}
+
+function buildOffer(cid){
+  const subs=DB.subs(),gds=DB.gd(),f2fs=DB.f2f();
+  const sub=subs.find(s=>s.candidateId===cid);if(!sub) return;
+  const g=gds[cid],f=f2fs[cid];
+  const role=document.getElementById('or').value;
+  const jDate=document.getElementById('ojd').value;
+  const stip=document.getElementById('ost').value;
+  const dur=document.getElementById('odur').value;
+  const gp=g?(Object.values(g.scores).reduce((a,b)=>a+b,0)/80*100).toFixed(1):'-';
+  const fp=f?(Object.values(f.scores).reduce((a,b)=>a+b,0)/80*100).toFixed(1):'-';
+  const today=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  const jD=new Date(jDate).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  // Remove old preview
+  const old=document.getElementById('olprev');if(old) old.remove();
+  const wrap=dv('');wrap.id='olprev';
+  const btns=dv('',null);btns.style.cssText='display:flex;gap:8px;margin-bottom:12px';
+  const pb=mk('button','btn bny bsm','🖨 Print / Save as PDF');pb.onclick=()=>window.print();
+  const db=mk('button','btn bgr bsm','⬇ Download HTML');
+  db.onclick=()=>{
+    const content=`<!DOCTYPE html><html><head><title>Offer Letter — ${cid}</title>
+    <style>body{font-family:Arial,sans-serif;padding:32px;max-width:720px;margin:0 auto}
+    table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12px}
+    td{padding:8px 12px;border:1px solid #E2E8F4}
+    tr:nth-child(even)td{background:#F5F7FC}
+    td:first-child{font-weight:600;color:#1A3A6E;background:#EBF0FB;width:40%}
+    h2{color:#1A3A6E;font-size:22px}
+    .hdr{text-align:center;border-bottom:2px solid #1A3A6E;padding-bottom:14px;margin-bottom:22px}
+    .sig{margin-top:24px;padding-top:12px;border-top:1px solid #E2E8F4;display:flex;justify-content:space-between}
+    .sigline{border-bottom:1.5px solid #111;width:170px;margin-bottom:4px}
+    </style></head><body>${document.getElementById('olletter').outerHTML}</body></html>`;
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(new Blob([content],{type:'text/html'}));
+    a.download=`GC_OfferLetter_${cid}_${new Date().toISOString().slice(0,10)}.html`;
+    a.click();
+  };
+  btns.appendChild(pb);btns.appendChild(db);
+  wrap.appendChild(btns);
+  const letter=dv('olet');letter.id='olletter';
+  letter.innerHTML=`
+  <div class="olhdr">
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px">
+      <div style="width:50px;height:50px;border-radius:13px;background:linear-gradient(135deg,#1A3A6E,#2757A8);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff">GC</div>
+      <div><h2>GLOBE CREATER</h2><p>Campus Hiring 2026 · Pune, Maharashtra</p></div>
+    </div>
+    <p style="font-size:11px;color:#6B7280">Ref: GC/INTERN/2026/${cid} &nbsp;|&nbsp; Date: ${today}</p>
+  </div>
+  <p><strong>To,</strong><br>${sub.name}<br>${sub.college}<br>${sub.email} | ${sub.mobile||'—'}</p><br>
+  <p><strong>Subject: Internship Offer — ${role} at Globe Creater, Pune</strong></p><br>
+  <p>Dear <strong>${sub.name}</strong>,</p><br>
+  <p>We are pleased to inform you that after a comprehensive three-stage evaluation in Globe Creater's Campus Hiring Drive (${sub.driveDate}), you have been <strong>selected</strong> for an Internship.</p>
+  <table class="oltbl">
+    <tr><td>Candidate ID</td><td>${cid}</td></tr>
+    <tr><td>Role Offered</td><td><strong>${role}</strong></td></tr>
+    <tr><td>Aptitude Test Score</td><td>${sub.scores.total}/30 (${sub.scores.percentage}%)</td></tr>
+    <tr><td>Group Discussion Score</td><td>${gp}%</td></tr>
+    <tr><td>F2F Interview Score</td><td>${fp}%</td></tr>
+    <tr><td>Monthly Stipend</td><td><strong>₹${parseInt(stip||8000).toLocaleString('en-IN')}/month</strong></td></tr>
+    <tr><td>Internship Duration</td><td>${dur} (Extendable based on performance)</td></tr>
+    <tr><td>Reporting Date</td><td><strong>${jD}</strong></td></tr>
+    <tr><td>Location</td><td>Globe Creater Office, Pune, Maharashtra</td></tr>
+  </table>
+  <p>Please confirm acceptance within <strong>5 working days</strong>. Non-response = non-acceptance.</p><br>
+  <p>Congratulations! We look forward to welcoming you to the Globe Creater team.</p>
+  <div class="olsig">
+    <div><div class="olline"></div><div style="font-size:11px;color:#6B7280">Authorised Signatory</div><strong>Globe Creater · Pune</strong></div>
+    <div style="text-align:right"><div class="olline" style="margin-left:auto"></div><div style="font-size:11px;color:#6B7280">Candidate Signature &amp; Date</div><strong>${sub.name}</strong></div>
+  </div>`;
+  wrap.appendChild(letter);
+  document.getElementById('acont').appendChild(wrap);
+  toast('Offer letter generated','gr');
+  wrap.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── EXPORT TO EXCEL/CSV ──
+function tabExp(){
+  const w=dv('');
+  const subs=DB.subs(),gds=DB.gd(),f2fs=DB.f2f(),cuts=DB.cuts();
+  const passed=subs.filter(s=>s.scores.percentage>=cuts.aptPct).length;
+  const sel=Object.values(f2fs).filter(f=>Object.values(f.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.f2fPct).length;
+  w.appendChild(dv('slabel','Super Admin — Export Data to Excel / CSV'));
+  w.appendChild(dv('infomsg',`📊 <strong>${subs.length}</strong> submissions | <strong>${passed}</strong> aptitude passed | <strong>${Object.keys(gds).length}</strong> GD evaluated | <strong>${Object.keys(f2fs).length}</strong> F2F done | <strong>${sel}</strong> selected. Download each report below.`));
+
+  // Summary panel
+  const sumCard=dv('');sumCard.style.cssText='background:linear-gradient(135deg,#0F2548,#1A3A6E);border-radius:var(--rl);padding:16px;margin-bottom:16px;color:#fff';
+  sumCard.innerHTML=`
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.5);margin-bottom:12px">How to Use</div>
+  <div style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.9">
+    1. Download each CSV below → Open Excel → <strong>File → Import (or drag & drop)</strong><br>
+    2. Create separate sheets for each stage in one workbook for the Master Report<br>
+    3. Use <strong>VLOOKUP(CandidateID)</strong> to link data across Aptitude, GD, and F2F sheets<br>
+    4. Apply <strong>Conditional Formatting</strong> on the % columns to colour-code pass/fail<br>
+    5. The Pipeline CSV is the complete master report — share this with management
+  </div>`;
+  w.appendChild(sumCard);
+
+  const exports=[
+    {t:'📋 Stage 1 — Aptitude Results',d:`${subs.length} candidates | Includes section scores (ENG/MTH/QAP/LGR/ABR), total, %, easy/hard split, proctor violations, pass/fail status.`,btn:'⬇ Download Aptitude CSV',tp:'apt',count:subs.length},
+    {t:'🎤 Stage 2 — GD Evaluation Scores',d:`${Object.keys(gds).length} evaluated | 8 GD parameter scores, total/80, %, evaluator name, remarks, shortlisted/eliminated status.`,btn:'⬇ Download GD CSV',tp:'gd',count:Object.keys(gds).length},
+    {t:'🧑‍💼 Stage 3 — F2F Interview Scores',d:`${Object.keys(f2fs).length} evaluated | 8 F2F parameter scores, total/80, %, expert name, remarks, selected/not selected status.`,btn:'⬇ Download F2F CSV',tp:'f2f',count:Object.keys(f2fs).length},
+    {t:'🔍 Full Pipeline Report',d:`${subs.length} candidates | ALL 3 stages in one file — Aptitude + GD + F2F + final outcome. Recommended for management review.`,btn:'⬇ Download Pipeline CSV',tp:'pipe',count:subs.length,highlight:true},
+    {t:'🏆 Final Selected Interns Only',d:`${sel} selected | Only final selected candidates with all scores, expert remarks, contact info. Use for HR on-boarding.`,btn:'⬇ Download Selected CSV',tp:'sel',count:sel},
+    {t:'🔒 Proctoring Integrity Report',d:`${subs.length} candidates | Violations per candidate, auto-terminations, test flagging status. For Compliance/Governance.`,btn:'⬇ Download Proctor CSV',tp:'proc',count:subs.length},
+    {t:'📊 Analytics Summary CSV',d:'Aggregated drive statistics — funnel numbers, section averages, pass rates, easy/hard accuracy. For management presentation.',btn:'⬇ Download Analytics CSV',tp:'analytics',count:1},
+    {t:'🗄 Complete Raw Data (JSON)',d:'Full JSON export — all submissions, GD, F2F, cutoffs, timestamps. For database import, API sync, or developer use.',btn:'⬇ Download JSON',tp:'json',count:subs.length}
+  ];
+
+  exports.forEach(ex=>{
+    const c=dv('exc');
+    if(ex.highlight) c.style.cssText='background:var(--nyxl);border-color:var(--nyl)';
+    const top=dv('',`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+      <h3 style="font-size:13px;font-weight:700;color:var(--ny)">${ex.t}</h3>
+      <span style="background:${ex.count>0?'var(--grbg)':'var(--sf2)'};color:${ex.count>0?'var(--gr)':'var(--mu)'};font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid ${ex.count>0?'var(--grb)':'var(--br)'}">${ex.count} record${ex.count!==1?'s':''}</span>
+    </div>`);
+    c.appendChild(top);
+    c.appendChild(dv('',`<p style="font-size:11px;color:var(--mu);margin-bottom:11px;line-height:1.6">${ex.d}</p>`));
+    const b=mk('button','btn bny bsm',ex.btn);
+    b.style.cssText='padding:8px 16px;font-size:12px';
+    b.onclick=()=>doExport(ex.tp);
+    c.appendChild(b);
+    w.appendChild(c);
+  });
+
+  // Danger zone
+  const dc=dv('exc');dc.style.borderColor='var(--rd)';dc.style.background='#FFF5F5';
+  dc.innerHTML='<h3 style="color:var(--rd)">⚠ Danger Zone — Irreversible Action</h3><p style="font-size:11px;color:var(--mu);line-height:1.6;margin-bottom:11px">Permanently delete ALL stored data to reset for a new campus drive. <strong>Export all CSVs before proceeding.</strong> This cannot be undone.</p>';
+  const dbWrap=dv('',null);dbWrap.style.cssText='display:flex;gap:8px';
+  const db=mk('button','btn brd bsm','🗑 Delete All Data (Reset Drive)');
+  db.onclick=()=>{
+    if(confirm('⚠ DELETE ALL DATA permanently?\n\nSubmissions, GD scores, F2F scores will be permanently lost.\n\nHave you downloaded all your CSVs?\n\nType your decision — Click OK to proceed.')){
+      ['gc_subs','gc_gd','gc_f2f','gc_cuts'].forEach(k=>localStorage.removeItem(k));
+      toast('All data deleted — drive reset complete','rd');buildAdmContent();
+    }
+  };
+  dbWrap.appendChild(db);
+  dc.appendChild(dbWrap);
+  w.appendChild(dc);
+  return w;
+}
+
+function doExport(type){
+  const subs=DB.subs(),gds=DB.gd(),f2fs=DB.f2f(),cuts=DB.cuts();
+  const ts=new Date().toISOString().slice(0,10);
+  const esc=v=>'"'+String(v===null||v===undefined?'':v).replace(/"/g,'""')+'"';
+  const csv=rows=>rows.map(r=>r.map(esc).join(',')).join('\r\n');
+  let content='',filename='';
+
+  if(type==='apt'){
+    const rows=[['CandidateID','Name','College','Email','Mobile','Course','CGPA','DriveDate','ENG','MTH','QAP','LGR','ABR','Total','Percentage','EasyScore','HardScore','TimeTaken','ProcViolations','AutoTerminated','SubmittedAt','AptStatus']];
+    subs.forEach(s=>rows.push([s.candidateId,s.name,s.college,s.email,s.mobile||'',s.course||'',s.cgpa||'',s.driveDate,s.scores.ENG,s.scores.MTH,s.scores.QAP,s.scores.LGR,s.scores.ABR,s.scores.total,s.scores.percentage,s.scores.easyScore,s.scores.hardScore,s.timeTaken,s.proctorViolations||0,s.terminatedByProctor?'YES':'NO',s.submittedAt,s.status]));
+    content=csv(rows);filename=`GC_Aptitude_Results_${ts}.csv`;
+
+  }else if(type==='gd'){
+    const rows=[['CandidateID','Name','College','AptPct','AptStatus'].concat(GDP).concat(['TotalGD','GDPct','GDStatus','Evaluator','Remarks','EvaluatedAt'])];
+    Object.entries(gds).forEach(([cid,g])=>{
+      const sub=subs.find(s=>s.candidateId===cid);
+      const tot=Object.values(g.scores).reduce((a,b)=>a+b,0),pct=(tot/80*100).toFixed(1);
+      rows.push([cid,sub?.name||'',sub?.college||'',sub?.scores.percentage||'',sub?.status||''].concat(GDP.map(p=>g.scores[p])).concat([tot,pct,parseFloat(pct)>=cuts.gdPct?'SHORTLISTED':'ELIMINATED',g.evaluator||'',g.remarks||'',g.savedAt||'']));
+    });
+    content=csv(rows);filename=`GC_GD_Scores_${ts}.csv`;
+
+  }else if(type==='f2f'){
+    const rows=[['CandidateID','Name','College','AptPct','GDPct'].concat(F2FP).concat(['TotalF2F','F2FPct','F2FStatus','Expert','Remarks','EvaluatedAt'])];
+    Object.entries(f2fs).forEach(([cid,f])=>{
+      const sub=subs.find(s=>s.candidateId===cid);
+      const g=gds[cid];
+      const gp=g?(Object.values(g.scores).reduce((a,b)=>a+b,0)/80*100).toFixed(1):'-';
+      const tot=Object.values(f.scores).reduce((a,b)=>a+b,0),pct=(tot/80*100).toFixed(1);
+      rows.push([cid,sub?.name||'',sub?.college||'',sub?.scores.percentage||'',gp].concat(F2FP.map(p=>f.scores[p])).concat([tot,pct,parseFloat(pct)>=cuts.f2fPct?'SELECTED':'NOT SELECTED',f.expert||'',f.remarks||'',f.savedAt||'']));
+    });
+    content=csv(rows);filename=`GC_F2F_Scores_${ts}.csv`;
+
+  }else if(type==='pipe'){
+    const rows=[['CandidateID','Name','College','Email','Mobile','CGPA','AptPct','AptStatus','GDPct','GDStatus','F2FPct','F2FStatus','ProcViolations','FinalOutcome']];
+    subs.forEach(s=>{
+      const g=gds[s.candidateId],f=f2fs[s.candidateId];
+      const gt=g?Object.values(g.scores).reduce((a,b)=>a+b,0):null;
+      const gp=gt!=null?(gt/80*100).toFixed(1):'-';
+      const gs=gt!=null?(parseFloat(gp)>=cuts.gdPct?'SHORTLISTED':'ELIMINATED'):'-';
+      const ft=f?Object.values(f.scores).reduce((a,b)=>a+b,0):null;
+      const fp=ft!=null?(ft/80*100).toFixed(1):'-';
+      const fs=ft!=null?(parseFloat(fp)>=cuts.f2fPct?'SELECTED':'NOT SELECTED'):'-';
+      const out=f&&parseFloat(fp)>=cuts.f2fPct?'INTERN OFFER':s.scores.percentage<cuts.aptPct?'ELIMINATED-APT':g&&parseFloat(gp)<cuts.gdPct?'ELIMINATED-GD':'IN PROGRESS';
+      rows.push([s.candidateId,s.name,s.college,s.email,s.mobile||'',s.cgpa||'',s.scores.percentage,s.status,gp,gs,fp,fs,s.proctorViolations||0,out]);
+    });
+    content=csv(rows);filename=`GC_Full_Pipeline_${ts}.csv`;
+
+  }else if(type==='sel'){
+    const sel=subs.filter(s=>{const f=f2fs[s.candidateId];return f&&Object.values(f.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.f2fPct;});
+    if(!sel.length){toast('No selected candidates yet.','am');return;}
+    const rows=[['CandidateID','Name','College','Email','Mobile','Course','CGPA','AptPct','GDPct','F2FPct','Expert','F2FRemarks','Role','SubmittedAt']];
+    sel.forEach(s=>{
+      const g=gds[s.candidateId],f=f2fs[s.candidateId];
+      const gp=g?(Object.values(g.scores).reduce((a,b)=>a+b,0)/80*100).toFixed(1):'-';
+      const fp=f?(Object.values(f.scores).reduce((a,b)=>a+b,0)/80*100).toFixed(1):'-';
+      rows.push([s.candidateId,s.name,s.college,s.email,s.mobile||'',s.course||'',s.cgpa||'',s.scores.percentage,gp,fp,f?.expert||'',f?.remarks||'','To Be Assigned',s.submittedAt]);
+    });
+    content=csv(rows);filename=`GC_SelectedInterns_${ts}.csv`;
+
+  }else if(type==='proc'){
+    const rows=[['CandidateID','Name','College','ProcViolations','AutoTerminated','AptScore','AptPct','AptStatus','SubmittedAt']];
+    subs.forEach(s=>rows.push([s.candidateId,s.name,s.college,s.proctorViolations||0,s.terminatedByProctor?'YES':'NO',s.scores.total,s.scores.percentage,s.status,s.submittedAt]));
+    content=csv(rows);filename=`GC_ProctoringReport_${ts}.csv`;
+
+  }else if(type==='analytics'){
+    const passed=subs.filter(s=>s.scores.percentage>=cuts.aptPct).length;
+    const gdP=Object.values(gds).filter(g=>Object.values(g.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.gdPct).length;
+    const sel=Object.values(f2fs).filter(f=>Object.values(f.scores).reduce((a,b)=>a+b,0)/80*100>=cuts.f2fPct).length;
+    const avgPct=subs.length?subs.reduce((a,s)=>a+s.scores.percentage,0)/subs.length:0;
+    const eAvg=subs.length?subs.reduce((a,s)=>a+s.scores.easyScore,0)/subs.length:0;
+    const hAvg=subs.length?subs.reduce((a,s)=>a+s.scores.hardScore,0)/subs.length:0;
+    const rows=[
+      ['Globe Creater — Campus Drive Analytics Summary'],
+      ['Generated At',new Date().toLocaleString('en-IN'),'Drive Date',subs[0]?.driveDate||'—'],
+      [''],
+      ['FUNNEL SUMMARY','','',''],
+      ['Metric','Count','%','Notes'],
+      ['Total Appeared',subs.length,'100%',''],
+      ['Aptitude Passed',passed,subs.length?((passed/subs.length)*100).toFixed(1)+'%':'',`Cutoff: ${cuts.aptPct}%`],
+      ['Aptitude Failed',subs.length-passed,subs.length?(((subs.length-passed)/subs.length)*100).toFixed(1)+'%':'',''],
+      ['GD Evaluated',Object.keys(gds).length,'',''],
+      ['GD Shortlisted',gdP,passed?((gdP/passed)*100).toFixed(1)+'%':'',`Cutoff: ${cuts.gdPct}%`],
+      ['F2F Evaluated',Object.keys(f2fs).length,'',''],
+      ['Final Selected',sel,subs.length?((sel/subs.length)*100).toFixed(1)+'% overall yield':'',`Cutoff: ${cuts.f2fPct}%`],
+      [''],
+      ['APTITUDE STATISTICS','','',''],
+      ['Average Score',avgPct.toFixed(1)+'%','',''],
+      ['Easy Avg',eAvg.toFixed(1)+'/15','',''],
+      ['Hard Avg',hAvg.toFixed(1)+'/15','',''],
+      ['Proctor Flags',subs.filter(s=>s.proctorViolations>0).length,'',''],
+      [''],
+      ['SECTION AVERAGES','','',''],
+      ['Section','Avg Score','Max','%'],
+      ...SECS.map(sec=>{
+        const avg=subs.length?subs.reduce((a,s)=>a+(s.scores[sec]||0),0)/subs.length:0;
+        return[SM[sec].name,avg.toFixed(2),'6',(avg/6*100).toFixed(1)+'%'];
+      }),
+      [''],
+      ['CUTOFFS APPLIED','','',''],
+      ['Aptitude Cutoff',cuts.aptPct+'%','',''],
+      ['GD Cutoff',cuts.gdPct+'%','',''],
+      ['F2F Cutoff',cuts.f2fPct+'%','',''],
+      ['Section Minimum',cuts.secMin+'/6','','']
+    ];
+    content=csv(rows);filename=`GC_Analytics_Summary_${ts}.csv`;
+
+  }else{
+    content=JSON.stringify({exportedAt:new Date().toISOString(),exportedBy:ADM.user?.name||'Admin',cutoffs:cuts,submissions:subs,gdScores:gds,f2fScores:f2fs},null,2);
+    filename=`GC_RawData_${ts}.json`;
+  }
+
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([content],{type:'text/plain;charset=utf-8'}));
+  a.download=filename;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+  toast('Downloaded: '+filename,'gr');
+}
+</script>
+</body>
+</html>
